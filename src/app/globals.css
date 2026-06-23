@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@import "swiper/css";
+
+:root {
+  --black: #060504;
+  --dark: #0d0b08;
+  --gold: #c89b5c;
+  --gold-light: #d4a96a;
+  --beige: #e7c99a;
+  --muted: #8b7a66;
+  --background: var(--black);
+  --foreground: var(--beige);
+}
+
+@theme inline {
+  --color-black: var(--black);
+  --color-dark: var(--dark);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-beige: var(--beige);
+  --color-muted: var(--muted);
+  --color-beige-muted: var(--muted);
+  --color-black-light: var(--dark);
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--gold) 35%, transparent);
+  color: var(--beige);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--muted));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cinematic-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 5, 4, 0.4) 0%,
+    rgba(6, 5, 4, 0.75) 50%,
+    rgba(6, 5, 4, 0.95) 100%
+  );
+}
+
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.card-hover {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--gold) 50%, transparent);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
