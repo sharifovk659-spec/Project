@@ -124,7 +124,14 @@ export default function Footer() {
               Политика конфиденциальности
             </Link>
             <span className="hidden text-gold/30 lg:inline">|</span>
-            <p>Разработка сайта — ETERNA</p>
+            <a
+              href="https://yadgarov.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-beige"
+            >
+              Разработка сайта — yadgarov.dev
+            </a>
           </div>
         </div>
       </Container>
