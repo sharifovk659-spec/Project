@@ -1,14 +1,14 @@
 export const FOOTER_SERVICES = [
-  { label: "SMM продвижение", href: "/#smm" },
-  { label: "Видеопроизводство", href: "/#production" },
-  { label: "Фотосъёмка", href: "/#production" },
-  { label: "Обучение", href: "/#academy" },
+  { labelKey: "contact.services.smm", href: "/#smm" },
+  { labelKey: "contact.services.video", href: "/#production" },
+  { labelKey: "contact.services.photo", href: "/#production" },
+  { labelKey: "footer.serviceAcademy", href: "/#academy" },
 ] as const;
 
 export const FOOTER_CONTACTS = {
   phone: "+992 90 123 45 67",
   email: "hello@eterna.tj",
-  address: "Душанбе, Таджикистан",
+  addressKey: "contact.address",
 } as const;
 
 export const SOCIAL_LINKS = [

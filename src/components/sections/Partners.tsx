@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { PARTNERS } from "@/lib/data/partners";
 import { fadeUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
@@ -43,6 +44,7 @@ function PartnerLogo({
 }
 
 export default function Partners() {
+  const { t } = useLocale();
   const marqueeItems = [...PARTNERS, ...PARTNERS];
 
   return (
@@ -55,7 +57,7 @@ export default function Partners() {
           variants={fadeUp}
           className="mb-5 text-center text-xs tracking-[0.35em] text-beige-muted uppercase sm:mb-6"
         >
-          Нам доверяют
+          {t("partners.heading")}
         </motion.p>
 
         <div className="partners-marquee overflow-hidden">

@@ -3,15 +3,15 @@ import { HiOutlineClock, HiOutlineEye, HiOutlineBriefcase, HiOutlineUserGroup } 
 
 export interface StatItem {
   value: string;
-  label: string;
+  labelKey: string;
   icon: IconType;
 }
 
 export const STATS: StatItem[] = [
-  { value: "7+", label: "лет опыта", icon: HiOutlineClock },
-  { value: "20M+", label: "просмотров в соцсетях", icon: HiOutlineEye },
-  { value: "100+", label: "успешных проектов", icon: HiOutlineBriefcase },
-  { value: "30+", label: "партнёров и брендов", icon: HiOutlineUserGroup },
+  { value: "7+", labelKey: "stats.experience", icon: HiOutlineClock },
+  { value: "20M+", labelKey: "stats.views", icon: HiOutlineEye },
+  { value: "100+", labelKey: "stats.projects", icon: HiOutlineBriefcase },
+  { value: "30+", labelKey: "stats.partners", icon: HiOutlineUserGroup },
 ];
 
 export { PARTNERS } from "./partners";

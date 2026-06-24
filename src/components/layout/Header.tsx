@@ -6,10 +6,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
+  const { t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -33,7 +36,7 @@ export default function Header() {
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled
           ? "border-b border-gold/10 bg-background/80 backdrop-blur-xl"
-          : "bg-transparent"
+          : "bg-transparent",
       )}
     >
       <Container as="div" className="flex h-16 items-center justify-between gap-3 sm:h-20 sm:gap-4">
@@ -41,29 +44,31 @@ export default function Header() {
           <Logo priority className="h-9 w-auto sm:h-11 lg:h-12" />
         </Link>
 
-        <nav className="hidden items-center gap-6 xl:gap-8 lg:flex">
+        <nav className="hidden items-center gap-5 xl:gap-7 lg:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className="text-[11px] tracking-[0.15em] text-beige-muted uppercase transition-colors hover:text-gold xl:text-xs"
             >
-              {link.label}
+              {t(link.labelKey)}
             </a>
           ))}
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <LanguageSwitcher className="hidden sm:inline-flex" />
+
           <Link
             href="/#contact"
             className="hidden border border-gold/40 px-4 py-2 text-[10px] tracking-[0.15em] text-beige uppercase transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold lg:inline-flex xl:px-5 xl:py-2.5 xl:text-xs"
           >
-            Оставить заявку
+            {t("nav.cta")}
           </Link>
 
           <button
             type="button"
-            aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+            aria-label={menuOpen ? t("nav.menuClose") : t("nav.menuOpen")}
             className="inline-flex h-10 w-10 shrink-0 items-center justify-center text-2xl text-beige lg:hidden"
             onClick={() => setMenuOpen((v) => !v)}
           >
@@ -82,6 +87,7 @@ export default function Header() {
             className="fixed inset-0 top-16 z-40 overflow-y-auto bg-background/98 backdrop-blur-xl sm:top-20 lg:hidden"
           >
             <nav className="flex flex-col items-center gap-6 px-5 py-10">
+              <LanguageSwitcher />
               {NAV_LINKS.map((link, i) => (
                 <motion.a
                   key={link.href}
@@ -92,7 +98,7 @@ export default function Header() {
                   className="text-sm tracking-[0.2em] text-beige uppercase"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </motion.a>
               ))}
               <motion.a
@@ -103,7 +109,7 @@ export default function Header() {
                 className="mt-2 border border-gold/50 px-8 py-3 text-xs tracking-[0.2em] text-gold uppercase"
                 onClick={() => setMenuOpen(false)}
               >
-                Оставить заявку
+                {t("nav.cta")}
               </motion.a>
             </nav>
           </motion.div>

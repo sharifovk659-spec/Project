@@ -9,9 +9,11 @@ import "swiper/css/pagination";
 import type { Swiper as SwiperType } from "swiper";
 import { HiChevronLeft, HiChevronRight, HiX } from "react-icons/hi";
 import PlayButton from "@/components/ui/PlayButton";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { SHOWREEL_VIDEOS, vimeoEmbedUrl } from "@/lib/data/showreel";
 
 export default function ShowreelSlider() {
+  const { t } = useLocale();
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -61,7 +63,7 @@ export default function ShowreelSlider() {
                     priority={index === 0}
                     loading={index === 0 ? undefined : "lazy"}
                     sizes="(max-width: 1280px) 100vw, 1400px"
-                    quality={95}
+                    quality={92}
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/25 to-background/10" />
@@ -81,7 +83,7 @@ export default function ShowreelSlider() {
                     <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
                       <PlayButton
                         size="sm"
-                        label="Смотреть"
+                        label={t("production.watch")}
                         onClick={() => setPlaying(true)}
                         animated
                       />
@@ -95,7 +97,7 @@ export default function ShowreelSlider() {
 
         <button
           type="button"
-          aria-label="Предыдущее видео"
+          aria-label={t("production.showreelPrev")}
           onClick={() => swiperRef.current?.slidePrev()}
           className="absolute top-1/2 left-3 z-30 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-background/60 text-gold/90 opacity-100 backdrop-blur-md transition-all duration-300 hover:border-gold hover:bg-gold/10 hover:text-gold md:opacity-0 md:group-hover:opacity-100 sm:left-4 sm:h-9 sm:w-9"
         >
@@ -104,7 +106,7 @@ export default function ShowreelSlider() {
 
         <button
           type="button"
-          aria-label="Следующее видео"
+          aria-label={t("production.showreelNext")}
           onClick={() => swiperRef.current?.slideNext()}
           className="absolute top-1/2 right-3 z-30 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-background/60 text-gold/90 opacity-100 backdrop-blur-md transition-all duration-300 hover:border-gold hover:bg-gold/10 hover:text-gold md:opacity-0 md:group-hover:opacity-100 sm:right-4 sm:h-9 sm:w-9"
         >
@@ -114,7 +116,7 @@ export default function ShowreelSlider() {
         {playing && (
           <button
             type="button"
-            aria-label="Закрыть видео"
+            aria-label={t("production.showreelClose")}
             onClick={() => setPlaying(false)}
             className="absolute top-3 right-3 z-30 flex h-8 w-8 items-center justify-center rounded-full border border-gold/30 bg-background/60 text-beige backdrop-blur-md transition-colors hover:border-gold hover:text-gold sm:top-4 sm:right-4"
           >

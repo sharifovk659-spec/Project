@@ -4,10 +4,13 @@ import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { ACADEMY_CARDS } from "@/lib/data/academy";
 import { fadeUp } from "@/lib/animations";
 
 export default function AcademySection() {
+  const { t } = useLocale();
+
   return (
     <Section id="academy" className="relative overflow-hidden py-14 sm:py-16">
       <Container>
@@ -26,7 +29,7 @@ export default function AcademySection() {
             </span>
 
             <motion.p custom={0} variants={fadeUp} className="relative mb-4 text-xs tracking-[0.4em] text-gold uppercase">
-              Академия
+              {t("academy.eyebrow")}
             </motion.p>
 
             <motion.h2
@@ -34,11 +37,11 @@ export default function AcademySection() {
               variants={fadeUp}
               className="relative font-display text-3xl leading-tight font-light tracking-wide text-beige sm:text-4xl lg:text-5xl"
             >
-              ОБУЧАЕМ
+              {t("academy.title1")}
               <br />
-              И РАСКРЫВАЕМ
+              {t("academy.title2")}
               <br />
-              <span className="text-gradient-gold">ПОТЕНЦИАЛ</span>
+              <span className="text-gradient-gold">{t("academy.title3")}</span>
             </motion.h2>
 
             <motion.p
@@ -46,12 +49,12 @@ export default function AcademySection() {
               variants={fadeUp}
               className="relative mt-5 max-w-lg text-base leading-relaxed text-beige-muted"
             >
-              Практические курсы по SMM, съёмке, монтажу и продвижению от профессионалов.
+              {t("academy.description")}
             </motion.p>
 
             <motion.div custom={3} variants={fadeUp} className="relative mt-6">
               <Button href="#contact" variant="outline">
-                Узнать больше
+                {t("academy.cta")}
               </Button>
             </motion.div>
           </motion.div>
@@ -66,16 +69,16 @@ export default function AcademySection() {
               const Icon = card.icon;
               return (
                 <motion.a
-                  key={card.title}
+                  key={card.id}
                   href={card.href}
                   custom={i}
                   variants={fadeUp}
                   className="card-hover group rounded-2xl border border-gold/10 bg-dark p-6 hover:shadow-[0_0_40px_rgba(200,155,92,0.12)] sm:p-8"
                 >
                   <Icon className="mb-5 text-4xl text-gold transition-transform duration-300 group-hover:scale-110 sm:text-5xl" />
-                  <h3 className="font-display text-xl text-beige sm:text-2xl">{card.title}</h3>
+                  <h3 className="font-display text-xl text-beige sm:text-2xl">{t(`academy.cards.${card.id}.title`)}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-beige-muted sm:text-base">
-                    {card.description}
+                    {t(`academy.cards.${card.id}.description`)}
                   </p>
                 </motion.a>
               );

@@ -11,19 +11,18 @@ import "swiper/css/pagination";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { ABOUT_IMAGES, ABOUT_STATS, ABOUT_VALUES } from "@/lib/data/about";
 import { fadeUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
-const CREATIVE_OVERLAY = "Креативный\nподход к\nкаждому проекту";
-
-const TEAM_GALLERY = [
-  { src: ABOUT_IMAGES.team[4], alt: "Член команды 5", overlay: CREATIVE_OVERLAY },
-  { src: ABOUT_IMAGES.team[0], alt: "Член команды 1" },
-  { src: ABOUT_IMAGES.team[1], alt: "Член команды 2" },
-  { src: ABOUT_IMAGES.team[2], alt: "Член команды 3" },
-  { src: ABOUT_IMAGES.team[3], alt: "Член команды 4" },
-  { src: ABOUT_IMAGES.portraitCreative, alt: "Член команды" },
+const TEAM_GALLERY_SOURCES = [
+  { src: ABOUT_IMAGES.team[4], overlay: true },
+  { src: ABOUT_IMAGES.team[0] },
+  { src: ABOUT_IMAGES.team[1] },
+  { src: ABOUT_IMAGES.team[2] },
+  { src: ABOUT_IMAGES.team[3] },
+  { src: ABOUT_IMAGES.portraitCreative },
 ] as const;
 
 function AboutImage({
@@ -62,7 +61,7 @@ function AboutImage({
         priority={priority}
         loading={priority ? undefined : "lazy"}
         sizes={imageSizes}
-        quality={98}
+        quality={90}
         className={objectFit === "contain" ? "object-contain" : "object-cover"}
         style={{ objectPosition }}
       />
@@ -78,6 +77,7 @@ function AboutImage({
 }
 
 export default function AboutSection() {
+  const { t } = useLocale();
   const [mobileSlider, setMobileSlider] = useState(false);
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export default function AboutSection() {
             viewport={{ once: true, margin: "-60px" }}
           >
             <motion.p custom={0} variants={fadeUp} className="mb-3 text-xs tracking-[0.35em] text-gold uppercase">
-              О нас
+              {t("about.eyebrow")}
             </motion.p>
             <motion.h2
               custom={1}
@@ -107,9 +107,9 @@ export default function AboutSection() {
               className="font-display text-2xl leading-tight font-medium tracking-wide uppercase sm:text-3xl lg:text-[2rem] lg:leading-[1.15]"
             >
               <span className="text-gradient-gold">
-                Мы создаём
+                {t("about.title1")}
                 <br />
-                ваши истории
+                {t("about.title2")}
               </span>
             </motion.h2>
             <motion.p
@@ -117,12 +117,11 @@ export default function AboutSection() {
               variants={fadeUp}
               className="mt-4 max-w-lg text-sm leading-relaxed text-beige-muted sm:text-[15px]"
             >
-              Eterna Production — это команда профессионалов, объединённых страстью к визуальному
-              искусству и стремлением создавать качественный контент, который вдохновляет и продаёт.
+              {t("about.description")}
             </motion.p>
             <motion.div custom={3} variants={fadeUp} className="mt-6">
               <Button href="#contact" variant="outline" className="px-5 py-2.5 text-[11px] sm:text-xs">
-                Подробнее о нас
+                {t("about.cta")}
                 <HiOutlineArrowRight className="text-base" />
               </Button>
             </motion.div>
@@ -137,7 +136,7 @@ export default function AboutSection() {
           >
             <AboutImage
               src={ABOUT_IMAGES.teamGroup}
-              alt="Команда Eterna Production"
+              alt={t("about.teamGroupAlt")}
               aspectClass="aspect-[3/2] sm:aspect-[16/10]"
               className="w-full"
               priority
@@ -157,7 +156,7 @@ export default function AboutSection() {
             const Icon = item.icon;
             return (
               <motion.div
-                key={item.title}
+                key={item.id}
                 custom={i}
                 variants={fadeUp}
                 className={cn(
@@ -169,10 +168,10 @@ export default function AboutSection() {
                   <Icon className="text-lg text-gold sm:text-xl" />
                 </span>
                 <p className="text-[11px] font-semibold tracking-[0.14em] text-gold uppercase sm:text-xs">
-                  {item.title}
+                  {t(`about.values.${item.id}.title`)}
                 </p>
                 <p className="mt-2 text-xs leading-relaxed text-beige-muted sm:text-sm">
-                  {item.description}
+                  {t(`about.values.${item.id}.description`)}
                 </p>
               </motion.div>
             );
@@ -187,7 +186,7 @@ export default function AboutSection() {
           className="mt-10 flex flex-wrap items-center justify-between gap-3 sm:mt-12 lg:mt-14"
         >
           <motion.p custom={0} variants={fadeUp} className="text-xs tracking-[0.35em] text-gold uppercase">
-            Наша команда
+            {t("about.teamHeading")}
           </motion.p>
           <motion.a
             custom={1}
@@ -195,7 +194,7 @@ export default function AboutSection() {
             href="#showreel"
             className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] text-gold uppercase transition-colors hover:text-beige sm:text-xs"
           >
-            Смотреть портфолио
+            {t("about.portfolioLink")}
             <HiOutlineArrowRight className="text-base" />
           </motion.a>
         </motion.div>
@@ -227,12 +226,12 @@ export default function AboutSection() {
             }}
             className="pb-8 sm:pb-9"
           >
-            {TEAM_GALLERY.map((member, index) => (
+            {TEAM_GALLERY_SOURCES.map((member, index) => (
               <SwiperSlide key={member.src}>
                 <AboutImage
                   src={member.src}
-                  alt={member.alt}
-                  overlay={"overlay" in member ? member.overlay : undefined}
+                  alt={t("about.memberAlt")}
+                  overlay={"overlay" in member && member.overlay ? t("about.overlay") : undefined}
                   aspectClass="aspect-[3/4]"
                   objectPosition="center top"
                   priority={index < 2}
@@ -255,7 +254,7 @@ export default function AboutSection() {
               const Icon = stat.icon;
               return (
                 <motion.div
-                  key={stat.label}
+                  key={stat.labelKey}
                   custom={i}
                   variants={fadeUp}
                   className="flex min-w-0 items-center gap-3 sm:gap-4"
@@ -263,7 +262,7 @@ export default function AboutSection() {
                   <Icon className="shrink-0 text-xl text-gold sm:text-2xl" />
                   <div className="min-w-0">
                     <p className="font-display text-xl font-medium text-gold sm:text-2xl">{stat.value}</p>
-                    <p className="mt-0.5 text-[11px] leading-snug text-beige-muted sm:text-xs">{stat.label}</p>
+                    <p className="mt-0.5 text-[11px] leading-snug text-beige-muted sm:text-xs">{t(stat.labelKey)}</p>
                   </div>
                 </motion.div>
               );

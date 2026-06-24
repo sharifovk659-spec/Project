@@ -5,10 +5,13 @@ import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { SMM_SERVICES } from "@/lib/data/smm";
 import { fadeUp } from "@/lib/animations";
 
 export default function SmmSection() {
+  const { t } = useLocale();
+
   return (
     <Section id="smm" className="relative overflow-hidden py-14 sm:py-16">
       <Container>
@@ -27,7 +30,7 @@ export default function SmmSection() {
             </span>
 
             <motion.p custom={0} variants={fadeUp} className="relative mb-4 text-xs tracking-[0.4em] text-gold uppercase">
-              SMM
+              {t("smm.eyebrow")}
             </motion.p>
 
             <motion.h2
@@ -35,9 +38,9 @@ export default function SmmSection() {
               variants={fadeUp}
               className="relative font-display text-3xl leading-tight font-light tracking-wide text-beige sm:text-4xl lg:text-5xl"
             >
-              SMM ПРОДВИЖЕНИЕ,
+              {t("smm.title1")}
               <br />
-              <span className="text-gradient-gold">КОТОРОЕ РАБОТАЕТ</span>
+              <span className="text-gradient-gold">{t("smm.title2")}</span>
             </motion.h2>
 
             <motion.p
@@ -45,13 +48,12 @@ export default function SmmSection() {
               variants={fadeUp}
               className="relative mt-5 max-w-lg text-base leading-relaxed text-beige-muted"
             >
-              Разрабатываем стратегии, создаём контент и запускаем рекламу, которая
-              приносит охваты, заявки и продажи.
+              {t("smm.description")}
             </motion.p>
 
             <motion.div custom={3} variants={fadeUp} className="relative mt-6">
               <Button href="#contact" variant="outline">
-                Подробнее о SMM
+                {t("smm.cta")}
               </Button>
             </motion.div>
           </motion.div>
@@ -66,11 +68,11 @@ export default function SmmSection() {
             <div className="relative aspect-[1024/587] w-full overflow-hidden rounded-2xl border border-gold/20 bg-dark">
               <Image
                 src="/images/smm-dashboard.png"
-                alt="SMM analytics dashboard on smartphone"
+                alt={t("smm.imageAlt")}
                 fill
                 loading="lazy"
                 sizes="(max-width: 1024px) 100vw, 560px"
-                quality={95}
+                quality={90}
                 className="object-cover object-center"
               />
             </div>
@@ -87,13 +89,13 @@ export default function SmmSection() {
             const Icon = service.icon;
             return (
               <motion.div
-                key={service.title}
+                key={service.titleKey}
                 custom={i}
                 variants={fadeUp}
                 className="card-hover group rounded-xl border border-gold/10 bg-dark p-5 sm:p-6"
               >
                 <Icon className="mb-4 text-xl text-gold transition-transform duration-300 group-hover:scale-110 sm:text-2xl" />
-                <p className="text-sm leading-snug text-beige sm:text-base">{service.title}</p>
+                <p className="text-sm leading-snug text-beige sm:text-base">{t(service.titleKey)}</p>
               </motion.div>
             );
           })}

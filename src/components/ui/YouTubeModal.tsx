@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiX } from "react-icons/hi";
+import { useLocale } from "@/components/providers/LocaleProvider";
 interface YouTubeModalProps {
   embedUrl: string | null;
   title: string;
@@ -10,6 +11,7 @@ interface YouTubeModalProps {
 }
 
 export default function YouTubeModal({ embedUrl, title, onClose }: YouTubeModalProps) {
+  const { t } = useLocale();
   const [mounted, setMounted] = useState(false);
 
   const handleKeyDown = useCallback(
@@ -49,7 +51,7 @@ export default function YouTubeModal({ embedUrl, title, onClose }: YouTubeModalP
         type="button"
         className="absolute inset-0 bg-black/85 backdrop-blur-sm"
         onClick={onClose}
-        aria-label="Закрыть видео"
+        aria-label={t("production.showreelClose")}
       />
 
       <div className="relative z-10 w-full max-w-4xl overflow-hidden rounded-2xl border border-gold/30 bg-dark shadow-[0_0_80px_rgba(200,155,92,0.15)]">
@@ -58,7 +60,7 @@ export default function YouTubeModal({ embedUrl, title, onClose }: YouTubeModalP
           <button
             type="button"
             onClick={onClose}
-            aria-label="Закрыть"
+            aria-label={t("production.modalClose")}
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-background/60 text-beige backdrop-blur-md transition-colors hover:border-gold hover:text-gold"
           >
             <HiX className="text-base" />

@@ -7,10 +7,12 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import PlayButton from "@/components/ui/PlayButton";
 import Section from "@/components/ui/Section";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { gsap } from "@/lib/gsap";
 import { fadeUp } from "@/lib/animations";
 
 export default function Hero() {
+  const { t } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +44,7 @@ export default function Hero() {
       <div ref={bgRef} className="absolute inset-0 z-0 scale-110">
         <Image
           src="/images/hero-bg.png"
-          alt="Production studio with cinema camera and warm spotlight"
+          alt={t("hero.imageAlt")}
           fill
           priority
           className="object-cover object-center"
@@ -64,7 +66,7 @@ export default function Hero() {
               variants={fadeUp}
               className="mb-5 text-xs tracking-[0.35em] text-gold uppercase sm:text-sm"
             >
-              SMM • PRODUCTION • ACADEMY
+              {t("hero.eyebrow")}
             </motion.p>
 
             <motion.h1
@@ -74,9 +76,9 @@ export default function Hero() {
               variants={fadeUp}
               className="font-display text-[clamp(2.5rem,11vw,7.5rem)] leading-[0.95] font-light tracking-[0.06em] text-beige sm:tracking-[0.08em]"
             >
-              ETERNA
+              {t("hero.title1")}
               <br />
-              <span className="text-gradient-gold">PRODUCTION</span>
+              <span className="text-gradient-gold">{t("hero.title2")}</span>
             </motion.h1>
 
             <motion.p
@@ -86,7 +88,7 @@ export default function Hero() {
               variants={fadeUp}
               className="mt-6 max-w-xl text-base leading-relaxed text-beige-muted sm:mt-8 sm:text-lg"
             >
-              Продакшн и digital-команда полного цикла в Душанбе
+              {t("hero.subtitle")}
             </motion.p>
 
             <motion.div
@@ -96,9 +98,9 @@ export default function Hero() {
               variants={fadeUp}
               className="mt-8 flex flex-wrap gap-4 sm:mt-10"
             >
-              <Button href="#production">Смотреть кейсы</Button>
+              <Button href="#production">{t("hero.ctaCases")}</Button>
               <Button href="#contact" variant="outline">
-                Оставить заявку
+                {t("nav.cta")}
               </Button>
             </motion.div>
           </div>
@@ -111,7 +113,7 @@ export default function Hero() {
           >
             <PlayButton
               size="lg"
-              label="Showreel"
+              label={t("hero.playLabel")}
               onClick={scrollToShowreel}
               animated
               className="translate-y-0.5"
@@ -127,7 +129,7 @@ export default function Hero() {
         >
           <PlayButton
             size="sm"
-            label="Showreel"
+            label={t("hero.playLabel")}
             onClick={scrollToShowreel}
             animated
             className="translate-y-0.5"
@@ -142,7 +144,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
       >
         <div className="flex flex-col items-center gap-2">
-          <span className="text-[10px] tracking-[0.3em] text-beige-muted uppercase">Scroll</span>
+          <span className="text-[10px] tracking-[0.3em] text-beige-muted uppercase">{t("hero.scroll")}</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}

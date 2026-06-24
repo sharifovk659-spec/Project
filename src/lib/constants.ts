@@ -13,11 +13,11 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "О нас", href: "/#about" },
-  { label: "SMM", href: "/#smm" },
-  { label: "Production", href: "/#production" },
-  { label: "Академия", href: "/#academy" },
-  { label: "Контакты", href: "/#contact" },
+  { labelKey: "nav.about", href: "/#about" },
+  { labelKey: "nav.smm", href: "/#smm" },
+  { labelKey: "nav.production", href: "/#production" },
+  { labelKey: "nav.academy", href: "/#academy" },
+  { labelKey: "nav.contact", href: "/#contact" },
 ] as const;
 
 export const COLORS = {

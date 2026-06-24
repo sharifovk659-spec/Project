@@ -9,11 +9,13 @@ import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import ShowreelSlider from "@/components/ui/ShowreelSlider";
 import YouTubeModal from "@/components/ui/YouTubeModal";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { PRODUCTION_ITEMS } from "@/lib/data/production";
 import { fadeUp } from "@/lib/animations";
 import { getVideoEmbedUrl } from "@/lib/youtube";
 
 export default function ProductionSection() {
+  const { t } = useLocale();
   const [activeVideo, setActiveVideo] = useState<{ embedUrl: string; title: string } | null>(null);
 
   const openVideo = (title: string, videoUrl: string) => {
@@ -38,7 +40,7 @@ export default function ProductionSection() {
             </span>
 
             <motion.p custom={0} variants={fadeUp} className="relative mb-4 text-xs tracking-[0.4em] text-gold uppercase">
-              Production
+              {t("production.eyebrow")}
             </motion.p>
 
             <motion.h2
@@ -46,11 +48,11 @@ export default function ProductionSection() {
               variants={fadeUp}
               className="relative font-display text-3xl leading-tight font-light tracking-wide text-beige sm:text-4xl lg:text-5xl"
             >
-              СОЗДАЁМ
+              {t("production.title1")}
               <br />
-              КОНТЕНТ, КОТОРЫЙ
+              {t("production.title2")}
               <br />
-              <span className="text-gradient-gold">ВПЕЧАТЛЯЕТ</span>
+              <span className="text-gradient-gold">{t("production.title3")}</span>
             </motion.h2>
 
             <motion.p
@@ -58,11 +60,11 @@ export default function ProductionSection() {
               variants={fadeUp}
               className="relative mt-5 max-w-md text-base leading-relaxed text-beige-muted"
             >
-              Снимаем видео, которые передают атмосферу, усиливают бренд и вызывают эмоции.
+              {t("production.description")}
             </motion.p>
 
             <motion.div custom={3} variants={fadeUp} className="relative mt-6">
-              <Button href="#showreel">Смотреть портфолио</Button>
+              <Button href="#showreel">{t("production.cta")}</Button>
             </motion.div>
           </motion.div>
 
@@ -76,7 +78,7 @@ export default function ProductionSection() {
             <div className="relative aspect-[1024/494] w-full overflow-hidden rounded-2xl border border-gold/20 bg-dark">
               <Image
                 src="/images/production/production-grid.png"
-                alt="Promo Video, Food Video, Commercial, Event, Drone, Podcast"
+                alt={t("production.gridAlt")}
                 fill
                 loading="lazy"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -89,7 +91,7 @@ export default function ProductionSection() {
                     key={item.slug}
                     type="button"
                     onClick={() => openVideo(item.title, item.videoUrl)}
-                    aria-label={`${item.title} — смотреть видео`}
+                    aria-label={`${item.title} — ${t("production.watchAria")}`}
                     className="group relative cursor-pointer rounded-lg border-0 bg-transparent p-0 transition-colors hover:bg-black/20"
                   >
                     <span className="sr-only">{item.title}</span>

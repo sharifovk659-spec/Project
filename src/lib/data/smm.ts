@@ -8,14 +8,14 @@ import {
 } from "react-icons/hi";
 
 export interface SmmService {
-  title: string;
+  titleKey: string;
   icon: IconType;
 }
 
 export const SMM_SERVICES: SmmService[] = [
-  { title: "Стратегия", icon: HiOutlineLightBulb },
-  { title: "Контент-план", icon: HiOutlineClipboardList },
-  { title: "Reels & Shorts", icon: HiOutlineFilm },
-  { title: "Таргет реклама", icon: HiOutlineCursorClick },
-  { title: "Аналитика", icon: HiOutlineChartBar },
+  { titleKey: "smm.services.strategy", icon: HiOutlineLightBulb },
+  { titleKey: "smm.services.contentPlan", icon: HiOutlineClipboardList },
+  { titleKey: "smm.services.reels", icon: HiOutlineFilm },
+  { titleKey: "smm.services.target", icon: HiOutlineCursorClick },
+  { titleKey: "smm.services.analytics", icon: HiOutlineChartBar },
 ];

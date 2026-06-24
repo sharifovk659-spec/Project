@@ -5,9 +5,12 @@ import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import ContactForm, { ContactInfo } from "@/components/sections/ContactForm";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { fadeUp } from "@/lib/animations";
 
 export default function Cta() {
+  const { t } = useLocale();
+
   return (
     <Section id="contact" className="py-12 sm:py-14">
       <Container>
@@ -20,7 +23,7 @@ export default function Cta() {
           <div className="absolute inset-0">
             <Image
               src="/images/cta-studio.svg"
-              alt="Cinematic production studio"
+              alt={t("contact.imageAlt")}
               fill
               loading="lazy"
               sizes="100vw"
@@ -37,7 +40,7 @@ export default function Cta() {
                 variants={fadeUp}
                 className="mb-4 text-xs tracking-[0.35em] text-gold uppercase"
               >
-                Контакты
+                {t("contact.eyebrow")}
               </motion.p>
 
               <motion.h2
@@ -45,9 +48,9 @@ export default function Cta() {
                 variants={fadeUp}
                 className="font-display text-3xl leading-tight font-light tracking-wide text-beige sm:text-4xl"
               >
-                ГОТОВЫ К НОВОМУ
+                {t("contact.title1")}
                 <br />
-                <span className="text-gradient-gold">ПРОЕКТУ?</span>
+                <span className="text-gradient-gold">{t("contact.title2")}</span>
               </motion.h2>
 
               <motion.p
@@ -55,7 +58,7 @@ export default function Cta() {
                 variants={fadeUp}
                 className="mt-4 max-w-md text-sm leading-relaxed text-beige-muted sm:text-base"
               >
-                Оставьте заявку — мы свяжемся с вами в ближайшее время и обсудим ваш проект.
+                {t("contact.description")}
               </motion.p>
 
               <motion.div custom={3} variants={fadeUp} className="mt-6 hidden lg:block">

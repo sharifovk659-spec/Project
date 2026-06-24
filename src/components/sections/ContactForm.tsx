@@ -4,22 +4,24 @@ import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from "react-icons/hi";
 import Button from "@/components/ui/Button";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { FOOTER_CONTACTS } from "@/lib/data/footer";
 import { fadeUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
 const SERVICES = [
-  "SMM продвижение",
-  "Видеопродакшн",
-  "Фотосъёмка",
-  "Обучение / Академия",
-  "Другое",
+  "contact.services.smm",
+  "contact.services.video",
+  "contact.services.photo",
+  "contact.services.academy",
+  "contact.services.other",
 ] as const;
 
 const inputClass =
   "w-full rounded-xl border border-gold/20 bg-background/60 px-4 py-3 text-sm text-beige placeholder:text-beige-muted/40 backdrop-blur-sm transition-colors focus:border-gold/50 focus:outline-none";
 
 export default function ContactForm() {
+  const { t } = useLocale();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -36,18 +38,18 @@ export default function ContactForm() {
     const message = String(data.get("message") ?? "");
 
     const body = [
-      "Новая заявка с сайта ETERNA PRODUCTION",
+      t("contact.form.mailHeader"),
       "",
-      `Имя: ${name}`,
-      `Телефон: ${phone}`,
-      email ? `Email: ${email}` : null,
-      `Услуга: ${service}`,
-      message ? `Сообщение: ${message}` : null,
+      `${t("contact.form.mailName")}: ${name}`,
+      `${t("contact.form.mailPhone")}: ${phone}`,
+      email ? `${t("contact.form.mailEmail")}: ${email}` : null,
+      `${t("contact.form.mailService")}: ${service}`,
+      message ? `${t("contact.form.mailMessage")}: ${message}` : null,
     ]
       .filter(Boolean)
       .join("\n");
 
-    const mailto = `mailto:${FOOTER_CONTACTS.email}?subject=${encodeURIComponent("Заявка с сайта")}&body=${encodeURIComponent(body)}`;
+    const mailto = `mailto:${FOOTER_CONTACTS.email}?subject=${encodeURIComponent(t("contact.form.mailSubject"))}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
 
     setSubmitted(true);
@@ -62,9 +64,9 @@ export default function ContactForm() {
         animate={{ opacity: 1, y: 0 }}
         className="rounded-2xl border border-gold/30 bg-background/50 px-6 py-10 text-center backdrop-blur-sm sm:px-10 sm:py-12"
       >
-        <p className="font-display text-2xl text-beige sm:text-3xl">Спасибо!</p>
+        <p className="font-display text-2xl text-beige sm:text-3xl">{t("contact.form.thanks")}</p>
         <p className="mt-3 text-sm leading-relaxed text-beige-muted sm:text-base">
-          Заявка отправлена. Мы свяжемся с вами в ближайшее время.
+          {t("contact.form.success")}
         </p>
         <Button
           type="button"
@@ -72,7 +74,7 @@ export default function ContactForm() {
           className="mt-8"
           onClick={() => setSubmitted(false)}
         >
-          Отправить ещё
+          {t("contact.form.again")}
         </Button>
       </motion.div>
     );
@@ -83,28 +85,28 @@ export default function ContactForm() {
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
         <motion.div custom={0} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <label htmlFor="name" className="mb-2 block text-[10px] tracking-[0.2em] text-gold uppercase">
-            Имя *
+            {t("contact.form.name")}
           </label>
           <input
             id="name"
             name="name"
             type="text"
             required
-            placeholder="Ваше имя"
+            placeholder={t("contact.form.namePh")}
             className={inputClass}
           />
         </motion.div>
 
         <motion.div custom={1} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <label htmlFor="phone" className="mb-2 block text-[10px] tracking-[0.2em] text-gold uppercase">
-            Телефон *
+            {t("contact.form.phone")}
           </label>
           <input
             id="phone"
             name="phone"
             type="tel"
             required
-            placeholder="+992 90 000 00 00"
+            placeholder={t("contact.form.phonePh")}
             className={inputClass}
           />
         </motion.div>
@@ -113,28 +115,28 @@ export default function ContactForm() {
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
         <motion.div custom={2} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <label htmlFor="email" className="mb-2 block text-[10px] tracking-[0.2em] text-gold uppercase">
-            Email
+            {t("contact.form.email")}
           </label>
           <input
             id="email"
             name="email"
             type="email"
-            placeholder="email@example.com"
+            placeholder={t("contact.form.emailPh")}
             className={inputClass}
           />
         </motion.div>
 
         <motion.div custom={3} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <label htmlFor="service" className="mb-2 block text-[10px] tracking-[0.2em] text-gold uppercase">
-            Услуга *
+            {t("contact.form.service")}
           </label>
           <select id="service" name="service" required defaultValue="" className={cn(inputClass, "appearance-none")}>
             <option value="" disabled>
-              Выберите услугу
+              {t("contact.form.servicePh")}
             </option>
-            {SERVICES.map((service) => (
-              <option key={service} value={service} className="bg-dark text-beige">
-                {service}
+            {SERVICES.map((serviceKey) => (
+              <option key={serviceKey} value={t(serviceKey)} className="bg-dark text-beige">
+                {t(serviceKey)}
               </option>
             ))}
           </select>
@@ -143,20 +145,20 @@ export default function ContactForm() {
 
       <motion.div custom={4} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <label htmlFor="message" className="mb-2 block text-[10px] tracking-[0.2em] text-gold uppercase">
-          Сообщение
+          {t("contact.form.message")}
         </label>
         <textarea
           id="message"
           name="message"
           rows={4}
-          placeholder="Расскажите о вашем проекте..."
+          placeholder={t("contact.form.messagePh")}
           className={cn(inputClass, "resize-none")}
         />
       </motion.div>
 
       <motion.div custom={5} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <Button type="submit" disabled={loading} className="w-full px-10 py-4 text-xs sm:w-auto sm:text-sm">
-          {loading ? "Отправка..." : "Оставить заявку"}
+          {loading ? t("contact.form.submitting") : t("contact.form.submit")}
         </Button>
       </motion.div>
     </form>
@@ -164,6 +166,8 @@ export default function ContactForm() {
 }
 
 export function ContactInfo() {
+  const { t } = useLocale();
+
   return (
     <div className="space-y-5 text-left sm:space-y-6">
       <a
@@ -188,7 +192,7 @@ export function ContactInfo() {
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-gold/5">
           <HiOutlineLocationMarker className="text-lg text-gold" />
         </span>
-        {FOOTER_CONTACTS.address}
+        {t(FOOTER_CONTACTS.addressKey)}
       </p>
     </div>
   );
