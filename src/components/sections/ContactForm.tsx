@@ -168,12 +168,12 @@ export function ContactInfo() {
     <div className="space-y-5 text-left sm:space-y-6">
       <a
         href={`tel:${FOOTER_CONTACTS.phone.replace(/\s/g, "")}`}
-        className="flex items-center gap-3 text-sm text-beige-muted transition-colors hover:text-beige"
+        className="flex min-w-0 items-center gap-3 text-sm text-beige-muted transition-colors hover:text-beige"
       >
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-gold/5">
           <HiOutlinePhone className="text-lg text-gold" />
         </span>
-        {FOOTER_CONTACTS.phone}
+        <span className="break-words sm:whitespace-nowrap">{FOOTER_CONTACTS.phone}</span>
       </a>
       <a
         href={`mailto:${FOOTER_CONTACTS.email}`}

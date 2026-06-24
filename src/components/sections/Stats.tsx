@@ -8,7 +8,7 @@ import { fadeUp } from "@/lib/animations";
 
 export default function Stats() {
   return (
-    <Section className="relative -mt-16 z-20 pb-4">
+    <Section className="relative -mt-12 z-20 pb-2">
       <Container>
         <motion.div
           initial="hidden"

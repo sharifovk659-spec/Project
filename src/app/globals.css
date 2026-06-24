@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "swiper/css";
-@import "swiper/css/pagination";
 
 :root {
   --black: #060504;
@@ -108,13 +106,32 @@ body {
   animation-play-state: paused;
 }
 
-.partners-swiper {
-  overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+@keyframes play-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
 }
 
-.partners-swiper .swiper-wrapper {
-  transition-timing-function: linear !important;
+.animate-play-pulse {
+  animation: play-pulse 2.2s ease-in-out infinite;
+}
+
+.partners-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.partners-marquee-track {
+  animation: marquee 52s linear infinite;
+  will-change: transform;
+}
+
+.partners-marquee-track:hover {
+  animation-play-state: paused;
 }
 
 .showreel-video-swiper,
@@ -123,7 +140,11 @@ body {
   height: 100%;
 }
 
-.showreel-pagination .swiper-pagination-bullet {
+.showreel-video-swiper .swiper-pagination {
+  bottom: 12px !important;
+}
+
+.showreel-video-swiper .swiper-pagination-bullet {
   width: 6px;
   height: 6px;
   background: var(--gold);
@@ -131,7 +152,7 @@ body {
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.showreel-pagination .swiper-pagination-bullet-active {
+.showreel-video-swiper .swiper-pagination-bullet-active {
   opacity: 1;
   transform: scale(1.15);
 }

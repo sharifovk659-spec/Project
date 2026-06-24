@@ -1,8 +1,8 @@
 export const FOOTER_SERVICES = [
-  { label: "SMM продвижение", href: "#smm" },
-  { label: "Видеопроизводство", href: "#production" },
-  { label: "Фотосъёмка", href: "#production" },
-  { label: "Обучение", href: "#academy" },
+  { label: "SMM продвижение", href: "/#smm" },
+  { label: "Видеопроизводство", href: "/#production" },
+  { label: "Фотосъёмка", href: "/#production" },
+  { label: "Обучение", href: "/#academy" },
 ] as const;
 
 export const FOOTER_CONTACTS = {

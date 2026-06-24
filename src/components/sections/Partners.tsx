@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { PARTNERS } from "@/lib/data/partners";
@@ -12,17 +10,17 @@ import { cn } from "@/lib/utils";
 
 function PartnerLogo({ name, file, scale = 1 }: { name: string; file: string; scale?: number }) {
   return (
-    <div className="flex h-[70px] items-center px-3 sm:h-[78px] sm:px-4 lg:h-[94px]">
+    <div className="flex h-14 items-center px-2 sm:h-16 sm:px-3 lg:h-[72px]">
       <Image
         src={`/images/partners/${file}`}
         alt={name}
-        width={400}
-        height={94}
+        width={280}
+        height={72}
         loading="lazy"
         style={{ height: `calc(var(--partner-logo-h) * ${scale})`, width: "auto" }}
         className={cn(
-          "w-auto max-w-none object-contain opacity-85 transition-opacity duration-300 hover:opacity-100",
-          "[--partner-logo-h:70px] sm:[--partner-logo-h:78px] lg:[--partner-logo-h:94px]"
+          "w-auto max-w-[120px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100 sm:max-w-[140px] lg:max-w-[150px]",
+          "[--partner-logo-h:56px] sm:[--partner-logo-h:64px] lg:[--partner-logo-h:72px]"
         )}
       />
     </div>
@@ -30,35 +28,30 @@ function PartnerLogo({ name, file, scale = 1 }: { name: string; file: string; sc
 }
 
 export default function Partners() {
+  const marqueeItems = [...PARTNERS, ...PARTNERS];
+
   return (
-    <Section className="border-b border-gold/10 py-14 sm:py-16">
+    <Section className="border-b border-gold/10 py-8 sm:py-10">
       <Container>
         <motion.p
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="mb-10 text-center text-xs tracking-[0.35em] text-beige-muted uppercase sm:mb-12"
+          className="mb-5 text-center text-xs tracking-[0.35em] text-beige-muted uppercase sm:mb-6"
         >
           Нам доверяют
         </motion.p>
 
-        <Swiper
-          modules={[Autoplay, FreeMode]}
-          slidesPerView="auto"
-          spaceBetween={40}
-          loop
-          freeMode={{ momentum: false }}
-          speed={5000}
-          autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
-          className="partners-swiper"
-        >
-          {PARTNERS.map((partner) => (
-            <SwiperSlide key={partner.file} className="!w-auto">
-              <PartnerLogo name={partner.name} file={partner.file} scale={partner.scale} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="partners-marquee overflow-hidden">
+          <div className="partners-marquee-track flex w-max items-center gap-8 sm:gap-10">
+            {marqueeItems.map((partner, i) => (
+              <div key={`${partner.file}-${i}`} className="flex shrink-0 items-center justify-center">
+                <PartnerLogo name={partner.name} file={partner.file} scale={partner.scale} />
+              </div>
+            ))}
+          </div>
+        </div>
       </Container>
     </Section>
   );

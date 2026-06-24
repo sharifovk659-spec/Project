@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import type { Swiper as SwiperType } from "swiper";
 import { HiChevronLeft, HiChevronRight, HiX } from "react-icons/hi";
 import PlayButton from "@/components/ui/PlayButton";
@@ -38,7 +40,7 @@ export default function ShowreelSlider() {
           slidesPerView={1}
           loop
           autoplay={{ delay: 10000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-          pagination={{ clickable: true, el: ".showreel-pagination" }}
+          pagination={{ clickable: true }}
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
           }}
@@ -57,8 +59,9 @@ export default function ShowreelSlider() {
                     alt={video.title}
                     fill
                     priority={index === 0}
+                    loading={index === 0 ? undefined : "lazy"}
                     sizes="(max-width: 1280px) 100vw, 1200px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/25 to-background/10" />
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(6,5,4,0.55)_100%)]" />
@@ -130,7 +133,6 @@ export default function ShowreelSlider() {
           </div>
         )}
 
-        <div className="showreel-pagination absolute bottom-3 left-0 z-20 flex w-full justify-center gap-1.5 sm:bottom-3.5" />
       </div>
 
       <div className="gold-line opacity-60" />

@@ -39,10 +39,10 @@ export default function Hero() {
 
   return (
     <Section id="home" ref={sectionRef} className="relative min-h-screen overflow-hidden">
-      <div ref={bgRef} className="absolute inset-0 scale-110 will-change-transform">
+      <div ref={bgRef} className="absolute inset-0 scale-110">
         <Image
-          src="/images/hero-bg.svg"
-          alt="Production studio with camera, warm spotlight and cinematic smoke"
+          src="/images/hero-bg.png"
+          alt="Production studio with cinema camera and warm spotlight"
           fill
           priority
           className="object-cover object-center"
@@ -53,9 +53,9 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-background/30" />
       </div>
 
-      <Container className="relative z-10 flex min-h-screen items-center pt-24 pb-20">
-        <div className="flex w-full items-center justify-between gap-8">
-          <div className="max-w-3xl">
+      <Container className="relative z-10 flex min-h-[100dvh] items-center pt-20 pb-14 sm:min-h-screen sm:pt-24 sm:pb-16">
+        <div className="flex w-full min-w-0 items-center justify-between gap-4 sm:gap-8">
+          <div className="min-w-0 max-w-3xl">
             <motion.p
               custom={0}
               initial="hidden"
@@ -71,7 +71,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="font-display text-[clamp(3rem,10vw,7.5rem)] leading-[0.95] font-light tracking-[0.08em] text-beige"
+              className="font-display text-[clamp(2.5rem,11vw,7.5rem)] leading-[0.95] font-light tracking-[0.06em] text-beige sm:tracking-[0.08em]"
             >
               ETERNA
               <br />
@@ -108,7 +108,13 @@ export default function Hero() {
             transition={{ delay: 0.8, duration: 0.6 }}
             className="hidden lg:block"
           >
-            <PlayButton size="lg" label="Showreel" onClick={scrollToShowreel} />
+            <PlayButton
+              size="lg"
+              label="Showreel"
+              onClick={scrollToShowreel}
+              animated
+              className="translate-y-0.5"
+            />
           </motion.div>
         </div>
 
@@ -116,9 +122,15 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.5 }}
-          className="absolute right-5 bottom-24 lg:hidden"
+          className="absolute right-4 bottom-20 sm:right-5 sm:bottom-24 lg:hidden"
         >
-          <PlayButton size="sm" label="Showreel" onClick={scrollToShowreel} />
+          <PlayButton
+            size="sm"
+            label="Showreel"
+            onClick={scrollToShowreel}
+            animated
+            className="translate-y-0.5"
+          />
         </motion.div>
       </Container>
 

@@ -2,6 +2,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import Stats from "@/components/sections/Stats";
+import AboutSection from "@/components/sections/AboutSection";
 import Partners from "@/components/sections/Partners";
 import SmmSection from "@/components/sections/SmmSection";
 import ProductionSection from "@/components/sections/ProductionSection";
@@ -20,6 +21,7 @@ export default function Home() {
         <ProductionSection />
         <AcademySection />
         <Cta />
+        <AboutSection />
       </main>
       <Footer />
     </>

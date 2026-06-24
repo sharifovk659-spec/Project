@@ -1,7 +1,9 @@
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import SmoothScroll from "@/components/providers/SmoothScroll";
-import { siteMetadata } from "@/lib/metadata";
+import { siteMetadata, viewport } from "@/lib/metadata";
 import "./globals.css";
+
+export { viewport };
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -25,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className={`${cormorant.variable} ${inter.variable}`}>
-      <body className="font-body antialiased">
+      <body className="min-h-screen bg-background font-body text-foreground antialiased">
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

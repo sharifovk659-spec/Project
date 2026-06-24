@@ -9,9 +9,9 @@ import { fadeUp } from "@/lib/animations";
 
 export default function AcademySection() {
   return (
-    <Section id="academy" className="relative overflow-hidden py-20 sm:py-28">
+    <Section id="academy" className="relative overflow-hidden py-14 sm:py-16">
       <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -44,12 +44,12 @@ export default function AcademySection() {
             <motion.p
               custom={2}
               variants={fadeUp}
-              className="relative mt-6 max-w-lg text-base leading-relaxed text-beige-muted"
+              className="relative mt-5 max-w-lg text-base leading-relaxed text-beige-muted"
             >
               Практические курсы по SMM, съёмке, монтажу и продвижению от профессионалов.
             </motion.p>
 
-            <motion.div custom={3} variants={fadeUp} className="relative mt-8">
+            <motion.div custom={3} variants={fadeUp} className="relative mt-6">
               <Button href="#contact" variant="outline">
                 Узнать больше
               </Button>

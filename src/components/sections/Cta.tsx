@@ -9,7 +9,7 @@ import { fadeUp } from "@/lib/animations";
 
 export default function Cta() {
   return (
-    <Section id="contact" className="py-16 sm:py-24">
+    <Section id="contact" className="py-12 sm:py-14">
       <Container>
         <motion.div
           initial="hidden"
@@ -30,7 +30,7 @@ export default function Cta() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(200,155,92,0.12)_0%,transparent_50%)]" />
           </div>
 
-          <div className="relative grid gap-10 px-6 py-12 sm:px-10 sm:py-14 lg:grid-cols-2 lg:gap-14 lg:px-14 lg:py-16">
+          <div className="relative grid gap-8 px-6 py-10 sm:px-10 sm:py-12 lg:grid-cols-2 lg:gap-10 lg:px-12 lg:py-14">
             <div>
               <motion.p
                 custom={0}
@@ -53,12 +53,12 @@ export default function Cta() {
               <motion.p
                 custom={2}
                 variants={fadeUp}
-                className="mt-5 max-w-md text-sm leading-relaxed text-beige-muted sm:text-base"
+                className="mt-4 max-w-md text-sm leading-relaxed text-beige-muted sm:text-base"
               >
                 Оставьте заявку — мы свяжемся с вами в ближайшее время и обсудим ваш проект.
               </motion.p>
 
-              <motion.div custom={3} variants={fadeUp} className="mt-8 hidden lg:block">
+              <motion.div custom={3} variants={fadeUp} className="mt-6 hidden lg:block">
                 <ContactInfo />
               </motion.div>
             </div>

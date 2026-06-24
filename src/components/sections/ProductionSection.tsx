@@ -6,14 +6,13 @@ import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import ShowreelSlider from "@/components/ui/ShowreelSlider";
-import { PRODUCTION_ITEMS } from "@/lib/data/production";
 import { fadeUp } from "@/lib/animations";
 
 export default function ProductionSection() {
   return (
-    <Section id="production" className="relative overflow-hidden py-20 sm:py-28">
+    <Section id="production" className="relative overflow-hidden py-14 sm:py-16">
       <Container>
-        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.18fr] lg:gap-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -46,43 +45,33 @@ export default function ProductionSection() {
             <motion.p
               custom={2}
               variants={fadeUp}
-              className="relative mt-6 max-w-md text-base leading-relaxed text-beige-muted"
+              className="relative mt-5 max-w-md text-base leading-relaxed text-beige-muted"
             >
               Снимаем видео, которые передают атмосферу, усиливают бренд и вызывают эмоции.
             </motion.p>
 
-            <motion.div custom={3} variants={fadeUp} className="relative mt-8">
+            <motion.div custom={3} variants={fadeUp} className="relative mt-6">
               <Button href="#showreel">Смотреть портфолио</Button>
             </motion.div>
           </motion.div>
 
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="relative w-full"
           >
-            {PRODUCTION_ITEMS.map((item, i) => (
-              <motion.article
-                key={item.slug}
-                custom={i}
-                variants={fadeUp}
-                className="card-hover group relative aspect-[4/5] overflow-hidden rounded-xl border border-gold/10 sm:aspect-[3/4]"
-              >
-                <Image
-                  src={`/images/production/${item.slug}.svg`}
-                  alt={item.title}
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 640px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-background/10" />
-                <p className="absolute right-0 bottom-0 left-0 p-3 text-xs tracking-wide text-beige sm:p-4 sm:text-sm">
-                  {item.title}
-                </p>
-              </motion.article>
-            ))}
+            <div className="relative aspect-[1024/494] w-full overflow-hidden rounded-2xl border border-gold/20 bg-dark">
+              <Image
+                src="/images/production/production-grid.png"
+                alt="Promo Video, Food Video, Commercial, Event, Drone, Podcast"
+                fill
+                loading="lazy"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-center"
+              />
+            </div>
           </motion.div>
         </div>
 
@@ -92,7 +81,7 @@ export default function ProductionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.7 }}
-          className="mt-16 sm:mt-20"
+          className="mt-10 sm:mt-12"
         >
           <ShowreelSlider />
         </motion.div>
