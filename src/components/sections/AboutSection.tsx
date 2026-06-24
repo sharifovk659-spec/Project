@@ -2,11 +2,24 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { HiOutlineArrowRight } from "react-icons/hi";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import Button from "@/components/ui/Button";
 import { ABOUT_IMAGES, ABOUT_STATS, ABOUT_VALUES } from "@/lib/data/about";
 import { fadeUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
+
+const CREATIVE_OVERLAY = "Креативный\nподход к\nкаждому проекту";
+
+const TEAM_GALLERY = [
+  { src: ABOUT_IMAGES.team[4], alt: "Член команды 5", overlay: CREATIVE_OVERLAY },
+  { src: ABOUT_IMAGES.team[0], alt: "Член команды 1" },
+  { src: ABOUT_IMAGES.team[1], alt: "Член команды 2" },
+  { src: ABOUT_IMAGES.team[2], alt: "Член команды 3" },
+  { src: ABOUT_IMAGES.team[3], alt: "Член команды 4" },
+  { src: ABOUT_IMAGES.portraitCreative, alt: "Член команды" },
+] as const;
 
 function AboutImage({
   src,
@@ -16,6 +29,8 @@ function AboutImage({
   aspectClass = "aspect-[4/3]",
   priority = false,
   objectPosition = "center",
+  objectFit = "cover",
+  imageSizes = "(max-width: 640px) 20vw, (max-width: 1024px) 16vw, 280px",
 }: {
   src: string;
   alt: string;
@@ -24,6 +39,8 @@ function AboutImage({
   aspectClass?: string;
   priority?: boolean;
   objectPosition?: string;
+  objectFit?: "cover" | "contain";
+  imageSizes?: string;
 }) {
   return (
     <div
@@ -39,14 +56,14 @@ function AboutImage({
         fill
         priority={priority}
         loading={priority ? undefined : "lazy"}
-        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 480px"
-        quality={92}
-        className="object-cover"
+        sizes={imageSizes}
+        quality={95}
+        className={objectFit === "contain" ? "object-contain" : "object-cover"}
         style={{ objectPosition }}
       />
       {overlay ? (
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-3 py-3 sm:px-4 sm:py-4">
-          <p className="text-[9px] leading-snug font-semibold tracking-[0.14em] text-gold uppercase sm:text-[10px] sm:tracking-[0.18em]">
+          <p className="whitespace-pre-line text-[8px] leading-snug font-semibold tracking-[0.12em] text-gold uppercase sm:text-[9px] sm:tracking-[0.16em]">
             {overlay}
           </p>
         </div>
@@ -59,12 +76,12 @@ export default function AboutSection() {
   return (
     <Section id="about" className="relative overflow-hidden border-t border-gold/10 py-12 sm:py-16">
       <Container>
-        <div className="grid gap-3 sm:gap-4 lg:grid-cols-12 lg:grid-rows-[auto_auto] lg:gap-x-4 lg:gap-y-4">
+        {/* Row 1: text + group photo */}
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-14">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
-            className="lg:col-span-3 lg:row-start-1"
           >
             <motion.p custom={0} variants={fadeUp} className="mb-3 text-xs tracking-[0.35em] text-gold uppercase">
               О нас
@@ -83,11 +100,17 @@ export default function AboutSection() {
             <motion.p
               custom={2}
               variants={fadeUp}
-              className="mt-4 text-sm leading-relaxed text-beige-muted sm:text-[15px]"
+              className="mt-4 max-w-lg text-sm leading-relaxed text-beige-muted sm:text-[15px]"
             >
               Eterna Production — это команда профессионалов, объединённых страстью к визуальному
               искусству и стремлением создавать качественный контент, который вдохновляет и продаёт.
             </motion.p>
+            <motion.div custom={3} variants={fadeUp} className="mt-6">
+              <Button href="#contact" variant="outline" className="px-5 py-2.5 text-[11px] sm:text-xs">
+                Подробнее о нас
+                <HiOutlineArrowRight className="text-base" />
+              </Button>
+            </motion.div>
           </motion.div>
 
           <motion.div
@@ -95,123 +118,120 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6 }}
-            className="min-w-0 lg:col-span-6 lg:row-start-1"
+            className="min-w-0"
           >
             <AboutImage
               src={ABOUT_IMAGES.teamGroup}
               alt="Команда Eterna Production"
               aspectClass="aspect-[3/2] sm:aspect-[16/10]"
-              className="h-full w-full"
+              className="w-full"
               priority
+              imageSizes="(max-width: 1024px) 100vw, 560px"
             />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="min-w-0 lg:col-span-3 lg:row-start-1"
-          >
-            <AboutImage
-              src={ABOUT_IMAGES.portraitCreative}
-              alt="Креативный подход к каждому проекту"
-              overlay="Креативный подход к каждому проекту"
-              aspectClass="aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] lg:min-h-full"
-              objectPosition="center top"
-            />
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            className="rounded-lg border border-gold/15 bg-white/[0.03] p-4 sm:p-5 lg:col-span-3 lg:row-start-2"
-          >
-            <ul className="space-y-4 sm:space-y-5">
-              {ABOUT_VALUES.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <motion.li key={item.title} custom={i} variants={fadeUp} className="flex gap-3 sm:gap-4">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-gold/25 bg-gold/10 sm:h-10 sm:w-10">
-                      <Icon className="text-base text-gold sm:text-lg" />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-[11px] font-semibold tracking-[0.14em] text-gold uppercase sm:text-xs">
-                        {item.title}
-                      </p>
-                      <p className="mt-1 text-xs leading-relaxed text-beige-muted sm:text-sm">
-                        {item.description}
-                      </p>
-                    </div>
-                  </motion.li>
-                );
-              })}
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6 }}
-            className="min-w-0 lg:col-span-6 lg:row-start-2"
-          >
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
-              {ABOUT_IMAGES.team.map((src, i) => (
-                <AboutImage
-                  key={src}
-                  src={src}
-                  alt={`Член команды ${i + 1}`}
-                  aspectClass="aspect-[3/4]"
-                />
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="min-w-0 lg:col-span-3 lg:row-start-2"
-          >
-            <AboutImage
-              src={ABOUT_IMAGES.partnership}
-              alt="Доверие и партнёрство"
-              overlay="Доверие и партнёрство на долгие годы"
-              aspectClass="aspect-[4/3] sm:aspect-[4/5] lg:aspect-square"
-              objectPosition="center 25%"
-            />
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            className="rounded-lg border border-gold/15 bg-dark/80 p-4 sm:p-6 lg:col-span-12 lg:row-start-3"
-          >
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
-              {ABOUT_STATS.map((stat, i) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={stat.label}
-                    custom={i}
-                    variants={fadeUp}
-                    className="flex min-w-0 items-center gap-3 sm:gap-4"
-                  >
-                    <Icon className="shrink-0 text-xl text-gold sm:text-2xl" />
-                    <div className="min-w-0">
-                      <p className="font-display text-xl font-medium text-gold sm:text-2xl">{stat.value}</p>
-                      <p className="mt-0.5 text-[11px] leading-snug text-beige-muted sm:text-xs">{stat.label}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
           </motion.div>
         </div>
+
+        {/* Row 2: values — 3 columns */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="mt-10 grid gap-8 sm:mt-12 sm:grid-cols-3 sm:gap-6 lg:mt-14 lg:gap-8"
+        >
+          {ABOUT_VALUES.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.title}
+                custom={i}
+                variants={fadeUp}
+                className={cn(
+                  "min-w-0",
+                  i < ABOUT_VALUES.length - 1 && "sm:border-r sm:border-gold/15 sm:pr-6 lg:pr-8"
+                )}
+              >
+                <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-gold/25 bg-gold/10 sm:h-11 sm:w-11">
+                  <Icon className="text-lg text-gold sm:text-xl" />
+                </span>
+                <p className="text-[11px] font-semibold tracking-[0.14em] text-gold uppercase sm:text-xs">
+                  {item.title}
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-beige-muted sm:text-sm">
+                  {item.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Row 3: team header */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="mt-10 flex flex-wrap items-center justify-between gap-3 sm:mt-12 lg:mt-14"
+        >
+          <motion.p custom={0} variants={fadeUp} className="text-xs tracking-[0.35em] text-gold uppercase">
+            Наша команда
+          </motion.p>
+          <motion.a
+            custom={1}
+            variants={fadeUp}
+            href="#showreel"
+            className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] text-gold uppercase transition-colors hover:text-beige sm:text-xs"
+          >
+            Смотреть портфолио
+            <HiOutlineArrowRight className="text-base" />
+          </motion.a>
+        </motion.div>
+
+        {/* Row 4: 6 portraits */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6 }}
+          className="mt-4 grid grid-cols-6 gap-1.5 sm:gap-2 lg:mt-5 lg:gap-3"
+        >
+          {TEAM_GALLERY.map((member) => (
+            <AboutImage
+              key={member.src}
+              src={member.src}
+              alt={member.alt}
+              overlay={"overlay" in member ? member.overlay : undefined}
+              aspectClass="aspect-[3/4]"
+              objectPosition="center top"
+            />
+          ))}
+        </motion.div>
+
+        {/* Row 5: stats */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="mt-10 rounded-lg border border-gold/15 bg-dark/80 p-4 sm:mt-12 sm:p-6 lg:mt-14"
+        >
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
+            {ABOUT_STATS.map((stat, i) => {
+              const Icon = stat.icon;
+              return (
+                <motion.div
+                  key={stat.label}
+                  custom={i}
+                  variants={fadeUp}
+                  className="flex min-w-0 items-center gap-3 sm:gap-4"
+                >
+                  <Icon className="shrink-0 text-xl text-gold sm:text-2xl" />
+                  <div className="min-w-0">
+                    <p className="font-display text-xl font-medium text-gold sm:text-2xl">{stat.value}</p>
+                    <p className="mt-0.5 text-[11px] leading-snug text-beige-muted sm:text-xs">{stat.label}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
       </Container>
     </Section>
   );

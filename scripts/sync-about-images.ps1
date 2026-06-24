@@ -3,7 +3,7 @@ $outDir = "c:\Users\komron\OneDrive\Desktop\Project\eterna-production\public\ima
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 Add-Type -AssemblyName System.Drawing
 
-$jpegQuality = 95L
+$jpegQuality = 98L
 
 function Export-Image($srcPath, $destPath, $maxW, $asJpg) {
   if (-not $srcPath -or -not (Test-Path -LiteralPath $srcPath)) {
@@ -42,26 +42,34 @@ function Find-Surati([string]$pattern) {
   ($files | Where-Object { $_.Name -like $pattern } | Select-Object -First 1).FullName
 }
 
-# Higher maxW + JPEG 95 — never upscale (only scale down)
+# High-res exports (never upscale — only scale down)
 $jobs = @(
-  @{ src = (Find-Surati "surati 7.png");   dest = "team-group.png";        maxW = 1920; jpg = $false }
-  @{ src = (Find-Surati "surati 4.png");   dest = "portrait-creative.jpg"; maxW = 1600; jpg = $true }
-  @{ src = (Find-Surati "surati 1.png");   dest = "team-1.png";            maxW = 1920; jpg = $false }
-  @{ src = (Find-Surati "surati 2.png");   dest = "team-2.jpg";            maxW = 1400; jpg = $true }
-  @{ src = (Find-Surati "surati 3*.png");  dest = "team-3.png";            maxW = 1920; jpg = $false }
-  @{ src = (Find-Surati "surati 6.png");   dest = "team-4.jpg";            maxW = 1400; jpg = $true }
-  @{ src = (Find-Surati "surati 01.jpg");  dest = "handshake.jpg";         maxW = 1800; jpg = $true }
+  @{ src = (Find-Surati "surati 4.png");  dest = "portrait-creative.jpg"; maxW = 2000; jpg = $true }
+  @{ src = (Find-Surati "surati 1.png");  dest = "team-1.jpg";           maxW = 4096; jpg = $true }
+  @{ src = (Find-Surati "surati 2.png");  dest = "team-2.jpg";           maxW = 2000; jpg = $true }
+  @{ src = (Find-Surati "surati 3*.png"); dest = "team-3.jpg";           maxW = 4096; jpg = $true }
+  @{ src = (Find-Surati "surati 6.png");  dest = "team-4.jpg";           maxW = 2000; jpg = $true }
+  @{ src = (Find-Surati "surati 5.png");  dest = "team-5.jpg";           maxW = 2000; jpg = $true }
 )
 
 foreach ($j in $jobs) {
   Export-Image $j.src (Join-Path $outDir $j.dest) $j.maxW $j.jpg
   $out = Get-Item (Join-Path $outDir $j.dest)
-  Add-Type -AssemblyName System.Drawing
   $i = [System.Drawing.Image]::FromFile($out.FullName)
   Write-Output "OK $($j.dest) <- $(Split-Path $j.src -Leaf) | $($i.Width)x$($i.Height) | $([math]::Round($out.Length/1KB))KB"
   $i.Dispose()
 }
 
+# Group photo — copy without re-encode
+$groupSrc = Find-Surati "surati 7.png"
+$groupDest = Join-Path $outDir "team-group.png"
+Copy-Item -LiteralPath $groupSrc -Destination $groupDest -Force
+$g = [System.Drawing.Image]::FromFile($groupDest)
+Write-Output "OK team-group.png <- $(Split-Path $groupSrc -Leaf) | $($g.Width)x$($g.Height) | $([math]::Round((Get-Item $groupDest).Length/1KB))KB"
+$g.Dispose()
+
+Remove-Item (Join-Path $outDir "team-1.png") -ErrorAction SilentlyContinue
+Remove-Item (Join-Path $outDir "team-3.png") -ErrorAction SilentlyContinue
+Remove-Item (Join-Path $outDir "handshake.jpg") -ErrorAction SilentlyContinue
+Remove-Item (Join-Path $outDir "portrait-creative.png") -ErrorAction SilentlyContinue
 Remove-Item (Join-Path $outDir "yas2.jpg") -ErrorAction SilentlyContinue
-Remove-Item (Join-Path $outDir "studio-bts.jpg") -ErrorAction SilentlyContinue
-Remove-Item (Join-Path $outDir "3.png") -ErrorAction SilentlyContinue

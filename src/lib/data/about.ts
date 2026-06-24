@@ -47,16 +47,16 @@ export const ABOUT_STATS: AboutStat[] = [
 
 /**
  * IMG/surati 1–7
- * 7 group | 4 creative | 1–3,6 team row | 5 partnership
+ * 7 group | 4 creative | 1–3,6,5 team row (no hand image)
  */
 export const ABOUT_IMAGES = {
   teamGroup: "/images/about/team-group.png",
   portraitCreative: "/images/about/portrait-creative.jpg",
   team: [
-    "/images/about/team-1.png",
+    "/images/about/team-1.jpg",
     "/images/about/team-2.jpg",
-    "/images/about/team-3.png",
+    "/images/about/team-3.jpg",
     "/images/about/team-4.jpg",
+    "/images/about/team-5.jpg",
   ],
-  partnership: "/images/about/handshake.jpg",
 } as const;

@@ -39,7 +39,7 @@ export default function Hero() {
 
   return (
     <Section id="home" ref={sectionRef} className="relative min-h-screen overflow-hidden">
-      <div ref={bgRef} className="absolute inset-0 scale-110">
+      <div ref={bgRef} className="absolute inset-0 z-0 scale-110">
         <Image
           src="/images/hero-bg.png"
           alt="Production studio with cinema camera and warm spotlight"
@@ -50,8 +50,8 @@ export default function Hero() {
           quality={92}
         />
         <div className="cinematic-overlay absolute inset-0" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(200,155,92,0.12)_0%,transparent_50%)]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-background/30" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(200,155,92,0.14)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/35 to-background/15" />
       </div>
 
       <Container className="relative z-10 flex min-h-[100dvh] items-center pt-20 pb-14 sm:min-h-screen sm:pt-24 sm:pb-16">

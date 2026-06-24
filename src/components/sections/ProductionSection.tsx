@@ -1,14 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { HiOutlinePlay } from "react-icons/hi";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import ShowreelSlider from "@/components/ui/ShowreelSlider";
+import YouTubeModal from "@/components/ui/YouTubeModal";
+import { PRODUCTION_ITEMS } from "@/lib/data/production";
 import { fadeUp } from "@/lib/animations";
+import { getVideoEmbedUrl } from "@/lib/youtube";
 
 export default function ProductionSection() {
+  const [activeVideo, setActiveVideo] = useState<{ embedUrl: string; title: string } | null>(null);
+
+  const openVideo = (title: string, videoUrl: string) => {
+    const embedUrl = getVideoEmbedUrl(videoUrl, true);
+    if (embedUrl) setActiveVideo({ embedUrl, title });
+  };
   return (
     <Section id="production" className="relative overflow-hidden py-14 sm:py-16">
       <Container>
@@ -72,6 +83,24 @@ export default function ProductionSection() {
                 quality={92}
                 className="object-cover object-center"
               />
+              <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-1.5 p-1.5 sm:gap-2 sm:p-2">
+                {PRODUCTION_ITEMS.map((item) => (
+                  <button
+                    key={item.slug}
+                    type="button"
+                    onClick={() => openVideo(item.title, item.videoUrl)}
+                    aria-label={`${item.title} — смотреть видео`}
+                    className="group relative cursor-pointer rounded-lg border-0 bg-transparent p-0 transition-colors hover:bg-black/20"
+                  >
+                    <span className="sr-only">{item.title}</span>
+                    <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/50 bg-black/50 text-gold backdrop-blur-sm">
+                        <HiOutlinePlay className="ml-0.5 text-xl" />
+                      </span>
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
@@ -87,6 +116,12 @@ export default function ProductionSection() {
           <ShowreelSlider />
         </motion.div>
       </Container>
+
+      <YouTubeModal
+        embedUrl={activeVideo?.embedUrl ?? null}
+        title={activeVideo?.title ?? ""}
+        onClose={() => setActiveVideo(null)}
+      />
     </Section>
   );
 }

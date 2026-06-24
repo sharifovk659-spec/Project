@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { HiOutlineChartBar } from "react-icons/hi";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
@@ -64,7 +63,7 @@ export default function SmmSection() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="relative"
           >
-            <div className="relative aspect-[21/9] overflow-hidden rounded-2xl border border-gold/20 bg-dark">
+            <div className="relative aspect-[729/340] w-full overflow-hidden rounded-2xl border border-gold/20 bg-dark">
               <Image
                 src="/images/smm-dashboard.png"
                 alt="SMM analytics dashboard on smartphone"
@@ -74,16 +73,6 @@ export default function SmmSection() {
                 quality={92}
                 className="object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-            </div>
-
-            <div className="absolute -bottom-4 left-4 flex items-center gap-3 rounded-xl border border-gold/30 bg-background/90 px-4 py-3 backdrop-blur-md sm:left-6 sm:px-5 sm:py-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-gold/30 bg-gold/10">
-                <HiOutlineChartBar className="text-lg text-gold" />
-              </div>
-              <p className="text-sm font-medium text-beige sm:text-base">
-                Рост охватов <span className="text-gold">+300%</span>
-              </p>
             </div>
           </motion.div>
         </div>
