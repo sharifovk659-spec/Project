@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { FaInstagram, FaTelegram, FaYoutube } from "react-icons/fa";
 import Container from "@/components/ui/Container";
-import { NAV_LINKS, SITE } from "@/lib/constants";
+import Logo from "@/components/ui/Logo";
+import { NAV_LINKS } from "@/lib/constants";
 import { FOOTER_SERVICES, FOOTER_CONTACTS, SOCIAL_LINKS } from "@/lib/data/footer";
 
 const socialIcons = {
@@ -16,11 +17,8 @@ export default function Footer() {
       <Container className="py-14 sm:py-16">
         <div className="grid gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-3">
-            <a href="#home" className="inline-flex flex-col leading-none">
-              <span className="font-display text-2xl tracking-[0.2em] text-beige">{SITE.name}</span>
-              <span className="mt-1 text-[10px] tracking-[0.4em] text-gold uppercase">
-                {SITE.tagline}
-              </span>
+            <a href="#home" className="inline-flex items-center">
+              <Logo className="h-12 sm:h-14" />
             </a>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-beige-muted">
               Продакшн и digital-команда полного цикла в Душанбе

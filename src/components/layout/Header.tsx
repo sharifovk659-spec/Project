@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import Container from "@/components/ui/Container";
-import { NAV_LINKS, SITE } from "@/lib/constants";
+import Logo from "@/components/ui/Logo";
+import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
@@ -34,13 +35,8 @@ export default function Header() {
       )}
     >
       <Container as="div" className="flex h-20 items-center justify-between">
-        <a href="#home" className="flex flex-col leading-none">
-          <span className="font-display text-xl font-semibold tracking-[0.25em] text-beige sm:text-2xl">
-            {SITE.name}
-          </span>
-          <span className="mt-1 text-[10px] tracking-[0.4em] text-gold uppercase sm:text-[11px]">
-            {SITE.tagline}
-          </span>
+        <a href="#home" className="inline-flex shrink-0 items-center">
+          <Logo priority />
         </a>
 
         <nav className="hidden items-center gap-8 xl:gap-10 lg:flex">

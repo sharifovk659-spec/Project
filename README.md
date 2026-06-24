@@ -18,14 +18,16 @@ Open [http://localhost:3000](http://localhost:3000).
 1. Push this repository to GitHub.
 2. In [Vercel](https://vercel.com), click **Add New → Project**.
 3. Import the GitHub repository `sharifovk659-spec/Project`.
-4. Vercel auto-detects **Next.js** — keep default settings:
+4. **Important:** in **Project Name**, enter a unique name, for example:
+   - `eterna-production` (recommended)
+   - Do **not** use `Project` — that name is already taken in your Vercel account.
+5. Keep default settings:
    - **Framework Preset:** Next.js
+   - **Root Directory:** `./`
    - **Build Command:** `npm run build`
-   - **Output Directory:** (leave empty)
-   - **Install Command:** `npm install`
-5. Add environment variable (optional, if subdomain differs):
+6. Add environment variable:
    - `NEXT_PUBLIC_SITE_URL` = `https://eterna.inovaauto.com`
-6. Click **Deploy**.
+7. Click **Deploy**.
 
 ## Custom domain (inovaauto.com)
 
