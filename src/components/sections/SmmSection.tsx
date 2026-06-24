@@ -63,14 +63,14 @@ export default function SmmSection() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="relative"
           >
-            <div className="relative aspect-[729/340] w-full overflow-hidden rounded-2xl border border-gold/20 bg-dark">
+            <div className="relative aspect-[1024/587] w-full overflow-hidden rounded-2xl border border-gold/20 bg-dark">
               <Image
                 src="/images/smm-dashboard.png"
                 alt="SMM analytics dashboard on smartphone"
                 fill
                 loading="lazy"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                quality={92}
+                sizes="(max-width: 1024px) 100vw, 560px"
+                quality={95}
                 className="object-cover object-center"
               />
             </div>
