@@ -35,7 +35,7 @@ function AboutImage({
   priority = false,
   objectPosition = "center",
   objectFit = "cover",
-  imageSizes = "(max-width: 640px) 20vw, (max-width: 1024px) 16vw, 280px",
+  imageSizes = "(max-width: 1023px) 100vw, (max-width: 1279px) 33vw, 220px",
 }: {
   src: string;
   alt: string;
@@ -62,7 +62,7 @@ function AboutImage({
         priority={priority}
         loading={priority ? undefined : "lazy"}
         sizes={imageSizes}
-        quality={95}
+        quality={98}
         className={objectFit === "contain" ? "object-contain" : "object-cover"}
         style={{ objectPosition }}
       />
@@ -141,7 +141,7 @@ export default function AboutSection() {
               aspectClass="aspect-[3/2] sm:aspect-[16/10]"
               className="w-full"
               priority
-              imageSizes="(max-width: 1024px) 100vw, 560px"
+              imageSizes="(max-width: 1024px) 100vw, 640px"
             />
           </motion.div>
         </div>
@@ -227,7 +227,7 @@ export default function AboutSection() {
             }}
             className="pb-8 sm:pb-9"
           >
-            {TEAM_GALLERY.map((member) => (
+            {TEAM_GALLERY.map((member, index) => (
               <SwiperSlide key={member.src}>
                 <AboutImage
                   src={member.src}
@@ -235,7 +235,8 @@ export default function AboutSection() {
                   overlay={"overlay" in member ? member.overlay : undefined}
                   aspectClass="aspect-[3/4]"
                   objectPosition="center top"
-                  imageSizes="(max-width: 640px) 85vw, (max-width: 1024px) 30vw, 200px"
+                  priority={index < 2}
+                  imageSizes="(max-width: 1023px) 100vw, (max-width: 1279px) 33vw, 220px"
                 />
               </SwiperSlide>
             ))}
