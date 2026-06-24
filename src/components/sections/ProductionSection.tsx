@@ -12,6 +12,7 @@ import YouTubeModal from "@/components/ui/YouTubeModal";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { PRODUCTION_ITEMS } from "@/lib/data/production";
 import { fadeUp } from "@/lib/animations";
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
 import { getVideoEmbedUrl } from "@/lib/youtube";
 
 export default function ProductionSection() {
@@ -81,8 +82,8 @@ export default function ProductionSection() {
                 alt={t("production.gridAlt")}
                 fill
                 loading="lazy"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                quality={92}
+                sizes={IMAGE_SIZES.halfColumn}
+                quality={IMAGE_QUALITY}
                 className="object-cover object-center"
               />
               <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-1.5 p-1.5 sm:gap-2 sm:p-2">

@@ -14,13 +14,14 @@ import Button from "@/components/ui/Button";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { ABOUT_IMAGES, ABOUT_STATS, ABOUT_VALUES } from "@/lib/data/about";
 import { fadeUp } from "@/lib/animations";
+import { IMAGE_QUALITY, IMAGE_QUALITY_HIGH, IMAGE_SIZES, LOW_RES_TEAM_WIDTH } from "@/lib/image";
 import { cn } from "@/lib/utils";
 
 const TEAM_GALLERY_SOURCES = [
   { src: ABOUT_IMAGES.team[4], overlay: true },
-  { src: ABOUT_IMAGES.team[0] },
+  { src: ABOUT_IMAGES.team[0], highQuality: true },
   { src: ABOUT_IMAGES.team[1] },
-  { src: ABOUT_IMAGES.team[2] },
+  { src: ABOUT_IMAGES.team[2], highQuality: true },
   { src: ABOUT_IMAGES.team[3] },
   { src: ABOUT_IMAGES.portraitCreative },
 ] as const;
@@ -34,7 +35,9 @@ function AboutImage({
   priority = false,
   objectPosition = "center",
   objectFit = "cover",
-  imageSizes = "(max-width: 1023px) 100vw, (max-width: 1279px) 33vw, 220px",
+  imageSizes = IMAGE_SIZES.teamPortrait,
+  lowRes = false,
+  highQuality = false,
 }: {
   src: string;
   alt: string;
@@ -45,7 +48,44 @@ function AboutImage({
   objectPosition?: string;
   objectFit?: "cover" | "contain";
   imageSizes?: string;
+  lowRes?: boolean;
+  highQuality?: boolean;
 }) {
+  const quality = highQuality ? IMAGE_QUALITY_HIGH : IMAGE_QUALITY;
+  const sizes = highQuality ? IMAGE_SIZES.teamPortraitHigh : imageSizes;
+
+  if (lowRes) {
+    return (
+      <div
+        className={cn(
+          "relative flex items-start justify-center overflow-hidden rounded-lg border border-gold/15 bg-dark",
+          aspectClass,
+          className
+        )}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          width={LOW_RES_TEAM_WIDTH}
+          height={320}
+          priority={priority}
+          loading={priority ? undefined : "lazy"}
+          quality={quality}
+          unoptimized
+          className="h-full w-auto max-w-full object-contain object-top"
+          style={{ objectPosition }}
+        />
+        {overlay ? (
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-4 py-4 sm:px-4 sm:py-4">
+            <p className="whitespace-pre-line text-[10px] leading-snug font-semibold tracking-[0.14em] text-gold uppercase sm:text-[9px] sm:tracking-[0.16em]">
+              {overlay}
+            </p>
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn(
@@ -60,8 +100,8 @@ function AboutImage({
         fill
         priority={priority}
         loading={priority ? undefined : "lazy"}
-        sizes={imageSizes}
-        quality={90}
+        sizes={sizes}
+        quality={quality}
         className={objectFit === "contain" ? "object-contain" : "object-cover"}
         style={{ objectPosition }}
       />
@@ -140,7 +180,7 @@ export default function AboutSection() {
               aspectClass="aspect-[3/2] sm:aspect-[16/10]"
               className="w-full"
               priority
-              imageSizes="(max-width: 1024px) 100vw, 640px"
+              imageSizes={IMAGE_SIZES.teamGroup}
             />
           </motion.div>
         </div>
@@ -235,7 +275,7 @@ export default function AboutSection() {
                   aspectClass="aspect-[3/4]"
                   objectPosition="center top"
                   priority={index < 2}
-                  imageSizes="(max-width: 1023px) 100vw, (max-width: 1279px) 33vw, 220px"
+                  highQuality={"highQuality" in member && member.highQuality}
                 />
               </SwiperSlide>
             ))}
@@ -247,9 +287,9 @@ export default function AboutSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="mt-10 rounded-lg border border-gold/15 bg-dark/80 p-4 sm:mt-12 sm:p-6 lg:mt-14"
+          className="mt-10 rounded-lg border border-gold/15 bg-dark/80 p-5 sm:mt-12 sm:p-6 lg:mt-14"
         >
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-4 sm:gap-6">
             {ABOUT_STATS.map((stat, i) => {
               const Icon = stat.icon;
               return (
@@ -257,12 +297,16 @@ export default function AboutSection() {
                   key={stat.labelKey}
                   custom={i}
                   variants={fadeUp}
-                  className="flex min-w-0 items-center gap-3 sm:gap-4"
+                  className="flex min-w-0 items-start gap-2.5 sm:items-center sm:gap-4"
                 >
-                  <Icon className="shrink-0 text-xl text-gold sm:text-2xl" />
-                  <div className="min-w-0">
-                    <p className="font-display text-xl font-medium text-gold sm:text-2xl">{stat.value}</p>
-                    <p className="mt-0.5 text-[11px] leading-snug text-beige-muted sm:text-xs">{t(stat.labelKey)}</p>
+                  <Icon className="mt-0.5 shrink-0 text-lg text-gold sm:mt-0 sm:text-2xl" />
+                  <div className="min-w-0 flex-1">
+                    <p className="font-display text-xl font-medium leading-none text-gold sm:text-2xl">
+                      {stat.value}
+                    </p>
+                    <p className="mt-1 text-[11px] leading-snug text-pretty text-beige-muted sm:mt-0.5 sm:text-xs">
+                      {t(stat.labelKey)}
+                    </p>
                   </div>
                 </motion.div>
               );

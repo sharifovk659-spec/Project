@@ -6,13 +6,13 @@ export const FOOTER_SERVICES = [
 ] as const;
 
 export const FOOTER_CONTACTS = {
-  phone: "+992 90 123 45 67",
+  phone: "+992 119 01 0000",
   email: "hello@eterna.tj",
   addressKey: "contact.address",
 } as const;
 
 export const SOCIAL_LINKS = [
-  { label: "Instagram", href: "https://instagram.com", icon: "instagram" },
-  { label: "Telegram", href: "https://t.me", icon: "telegram" },
+  { label: "Instagram", href: "https://www.instagram.com/planovnet", icon: "instagram" },
+  { label: "Telegram", href: "https://t.me/PLANOVNET", icon: "telegram" },
   { label: "YouTube", href: "https://youtube.com", icon: "youtube" },
 ] as const;

@@ -3,9 +3,10 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from "react-icons/hi";
+import { FaInstagram, FaTelegram } from "react-icons/fa";
 import Button from "@/components/ui/Button";
 import { useLocale } from "@/components/providers/LocaleProvider";
-import { FOOTER_CONTACTS } from "@/lib/data/footer";
+import { FOOTER_CONTACTS, SOCIAL_LINKS } from "@/lib/data/footer";
 import { fadeUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
@@ -167,6 +168,8 @@ export default function ContactForm() {
 
 export function ContactInfo() {
   const { t } = useLocale();
+  const telegram = SOCIAL_LINKS.find((link) => link.icon === "telegram");
+  const instagram = SOCIAL_LINKS.find((link) => link.icon === "instagram");
 
   return (
     <div className="space-y-5 text-left sm:space-y-6">
@@ -179,6 +182,32 @@ export function ContactInfo() {
         </span>
         <span className="break-words sm:whitespace-nowrap">{FOOTER_CONTACTS.phone}</span>
       </a>
+      {telegram ? (
+        <a
+          href={telegram.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex min-w-0 items-center gap-3 text-sm text-beige-muted transition-colors hover:text-beige"
+        >
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-gold/5">
+            <FaTelegram className="text-lg text-gold" />
+          </span>
+          <span className="break-all">@PLANOVNET</span>
+        </a>
+      ) : null}
+      {instagram ? (
+        <a
+          href={instagram.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex min-w-0 items-center gap-3 text-sm text-beige-muted transition-colors hover:text-beige"
+        >
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-gold/5">
+            <FaInstagram className="text-lg text-gold" />
+          </span>
+          <span className="break-all">@planovnet</span>
+        </a>
+      ) : null}
       <a
         href={`mailto:${FOOTER_CONTACTS.email}`}
         className="flex items-center gap-3 text-sm text-beige-muted transition-colors hover:text-beige"

@@ -7,6 +7,7 @@ import Section from "@/components/ui/Section";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { PARTNERS } from "@/lib/data/partners";
 import { fadeUp } from "@/lib/animations";
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
 import { cn } from "@/lib/utils";
 
 function PartnerLogo({
@@ -28,6 +29,8 @@ function PartnerLogo({
         width={280}
         height={72}
         loading="lazy"
+        quality={IMAGE_QUALITY}
+        sizes={IMAGE_SIZES.partner}
         style={{
           height: `calc(var(--partner-logo-h) * ${scale})`,
           width: "auto",

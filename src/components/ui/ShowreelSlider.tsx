@@ -11,6 +11,7 @@ import { HiChevronLeft, HiChevronRight, HiX } from "react-icons/hi";
 import PlayButton from "@/components/ui/PlayButton";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { SHOWREEL_VIDEOS, vimeoEmbedUrl } from "@/lib/data/showreel";
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
 
 export default function ShowreelSlider() {
   const { t } = useLocale();
@@ -62,8 +63,8 @@ export default function ShowreelSlider() {
                     fill
                     priority={index === 0}
                     loading={index === 0 ? undefined : "lazy"}
-                    sizes="(max-width: 1280px) 100vw, 1400px"
-                    quality={92}
+                    sizes={IMAGE_SIZES.showreel}
+                    quality={IMAGE_QUALITY}
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/25 to-background/10" />

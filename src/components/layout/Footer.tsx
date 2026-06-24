@@ -8,6 +8,7 @@ import Logo from "@/components/ui/Logo";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { NAV_LINKS } from "@/lib/constants";
 import { FOOTER_SERVICES, FOOTER_CONTACTS, SOCIAL_LINKS } from "@/lib/data/footer";
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
 
 const socialIcons = {
   instagram: FaInstagram,
@@ -113,8 +114,8 @@ export default function Footer() {
                 alt={t("footer.imageAlt")}
                 fill
                 loading="lazy"
-                sizes="(max-width: 1280px) 200px, 220px"
-                quality={92}
+                sizes={IMAGE_SIZES.footer}
+                quality={IMAGE_QUALITY}
                 className="object-cover object-center"
               />
             </div>

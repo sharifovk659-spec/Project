@@ -10,6 +10,7 @@ import Section from "@/components/ui/Section";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { gsap } from "@/lib/gsap";
 import { fadeUp } from "@/lib/animations";
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
 
 export default function Hero() {
   const { t } = useLocale();
@@ -41,15 +42,15 @@ export default function Hero() {
 
   return (
     <Section id="home" ref={sectionRef} className="relative min-h-screen overflow-hidden">
-      <div ref={bgRef} className="absolute inset-0 z-0 scale-110">
+      <div ref={bgRef} className="absolute inset-0 z-0 scale-105 sm:scale-110">
         <Image
           src="/images/hero-bg.png"
           alt={t("hero.imageAlt")}
           fill
           priority
           className="object-cover object-center"
-          sizes="100vw"
-          quality={92}
+          sizes={IMAGE_SIZES.hero}
+          quality={IMAGE_QUALITY}
         />
         <div className="cinematic-overlay absolute inset-0" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(200,155,92,0.14)_0%,transparent_50%)]" />

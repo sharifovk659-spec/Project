@@ -5,13 +5,18 @@ Add-Type -AssemblyName System.Drawing
 
 $jpegQuality = 98L
 
-function Export-Image($srcPath, $destPath, $maxW, $asJpg) {
+function Export-Image($srcPath, $destPath, $maxW, $asJpg, [switch]$AllowUpscale) {
   if (-not $srcPath -or -not (Test-Path -LiteralPath $srcPath)) {
     throw "Missing source: $destPath"
   }
   $bmp = [System.Drawing.Bitmap]::FromFile($srcPath)
-  if ($bmp.Width -gt $maxW) {
-    $ratio = $maxW / $bmp.Width
+  $needsScale = $bmp.Width -gt $maxW -or ($AllowUpscale -and $bmp.Width -lt $maxW)
+  if ($needsScale) {
+    if ($bmp.Width -gt $maxW) {
+      $ratio = $maxW / $bmp.Width
+    } else {
+      $ratio = $maxW / $bmp.Width
+    }
     $nw = [int][Math]::Round($bmp.Width * $ratio)
     $nh = [int][Math]::Round($bmp.Height * $ratio)
     $scaled = New-Object System.Drawing.Bitmap -ArgumentList $nw, $nh
@@ -45,15 +50,17 @@ function Find-Surati([string]$pattern) {
 # High-res exports (never upscale — only scale down)
 $jobs = @(
   @{ src = (Find-Surati "surati 4.png");  dest = "portrait-creative.jpg"; maxW = 2000; jpg = $true }
-  @{ src = (Find-Surati "surati 1.png");  dest = "team-1.jpg";           maxW = 2000; jpg = $true }
+  @{ src = (Find-Surati "surati 1.png");  dest = "team-1.jpg";           maxW = 2000; jpg = $true; upscale = $true }
   @{ src = (Find-Surati "surati 2.png");  dest = "team-2.jpg";           maxW = 2000; jpg = $true }
-  @{ src = (Find-Surati "surati 3*.png"); dest = "team-3.jpg";           maxW = 2000; jpg = $true }
+  @{ src = (Find-Surati "surati 3*.png"); dest = "team-3.jpg";           maxW = 2000; jpg = $true; upscale = $true }
   @{ src = (Find-Surati "surati 6.png");  dest = "team-4.jpg";           maxW = 2000; jpg = $true }
   @{ src = (Find-Surati "surati 5.png");  dest = "team-5.jpg";           maxW = 2000; jpg = $true }
 )
 
 foreach ($j in $jobs) {
-  Export-Image $j.src (Join-Path $outDir $j.dest) $j.maxW $j.jpg
+  $upscale = $false
+  if ($j.upscale) { $upscale = $true }
+  Export-Image $j.src (Join-Path $outDir $j.dest) $j.maxW $j.jpg -AllowUpscale:$upscale
   $out = Get-Item (Join-Path $outDir $j.dest)
   $i = [System.Drawing.Image]::FromFile($out.FullName)
   Write-Output "OK $($j.dest) <- $(Split-Path $j.src -Leaf) | $($i.Width)x$($i.Height) | $([math]::Round($out.Length/1KB))KB"

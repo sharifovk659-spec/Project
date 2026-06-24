@@ -8,6 +8,7 @@ import Button from "@/components/ui/Button";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { SMM_SERVICES } from "@/lib/data/smm";
 import { fadeUp } from "@/lib/animations";
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
 
 export default function SmmSection() {
   const { t } = useLocale();
@@ -71,8 +72,8 @@ export default function SmmSection() {
                 alt={t("smm.imageAlt")}
                 fill
                 loading="lazy"
-                sizes="(max-width: 1024px) 100vw, 560px"
-                quality={90}
+                sizes={IMAGE_SIZES.halfColumn}
+                quality={IMAGE_QUALITY}
                 className="object-cover object-center"
               />
             </div>
