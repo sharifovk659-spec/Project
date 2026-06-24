@@ -61,6 +61,7 @@ export default function ShowreelSlider() {
                     priority={index === 0}
                     loading={index === 0 ? undefined : "lazy"}
                     sizes="(max-width: 1280px) 100vw, 1200px"
+                    quality={92}
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/25 to-background/10" />

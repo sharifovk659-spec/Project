@@ -69,6 +69,7 @@ export default function ProductionSection() {
                 fill
                 loading="lazy"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={92}
                 className="object-cover object-center"
               />
             </div>

@@ -47,6 +47,7 @@ export default function Hero() {
           priority
           className="object-cover object-center"
           sizes="100vw"
+          quality={92}
         />
         <div className="cinematic-overlay absolute inset-0" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(200,155,92,0.12)_0%,transparent_50%)]" />

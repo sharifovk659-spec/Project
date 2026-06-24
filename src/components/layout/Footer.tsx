@@ -109,6 +109,7 @@ export default function Footer() {
                 fill
                 loading="lazy"
                 sizes="(max-width: 1280px) 200px, 220px"
+                quality={92}
                 className="object-cover object-center"
               />
             </div>

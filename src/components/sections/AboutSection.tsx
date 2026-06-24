@@ -39,7 +39,8 @@ function AboutImage({
         fill
         priority={priority}
         loading={priority ? undefined : "lazy"}
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 480px"
+        quality={92}
         className="object-cover"
         style={{ objectPosition }}
       />
