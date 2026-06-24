@@ -15,6 +15,36 @@ export default function SmmSection() {
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="relative"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/20 bg-dark sm:aspect-[16/11]">
+              <Image
+                src="/images/smm-phone.png"
+                alt="SMM analytics dashboard on smartphone"
+                fill
+                loading="lazy"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-right"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
+            </div>
+
+            <div className="absolute -bottom-4 left-4 flex items-center gap-3 rounded-xl border border-gold/30 bg-background/90 px-4 py-3 backdrop-blur-md sm:left-6 sm:px-5 sm:py-4">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-gold/30 bg-gold/10">
+                <HiOutlineChartBar className="text-lg text-gold" />
+              </div>
+              <p className="text-sm font-medium text-beige sm:text-base">
+                Рост охватов <span className="text-gold">+300%</span>
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
@@ -55,35 +85,6 @@ export default function SmmSection() {
                 Подробнее о SMM
               </Button>
             </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative"
-          >
-            <div className="relative overflow-hidden rounded-2xl border border-gold/20 bg-dark">
-              <Image
-                src="/images/smm-dashboard.svg"
-                alt="SMM analytics dashboard on smartphone"
-                width={560}
-                height={640}
-                loading="lazy"
-                className="h-auto w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-            </div>
-
-            <div className="absolute -bottom-4 left-4 flex items-center gap-3 rounded-xl border border-gold/30 bg-background/90 px-4 py-3 backdrop-blur-md sm:left-6 sm:px-5 sm:py-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-gold/30 bg-gold/10">
-                <HiOutlineChartBar className="text-lg text-gold" />
-              </div>
-              <p className="text-sm font-medium text-beige sm:text-base">
-                Рост охватов <span className="text-gold">+300%</span>
-              </p>
-            </div>
           </motion.div>
         </div>
 
