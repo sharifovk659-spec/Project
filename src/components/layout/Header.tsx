@@ -36,7 +36,7 @@ export default function Header() {
     >
       <Container as="div" className="flex h-20 items-center justify-between">
         <a href="#home" className="inline-flex shrink-0 items-center">
-          <Logo priority />
+          <Logo priority className="h-16 w-auto sm:h-[4.5rem] lg:h-[4.75rem]" />
         </a>
 
         <nav className="hidden items-center gap-8 xl:gap-10 lg:flex">

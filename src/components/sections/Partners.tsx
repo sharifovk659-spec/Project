@@ -2,27 +2,34 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, FreeMode } from "swiper/modules";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
-import { PARTNERS } from "@/lib/data/home";
+import { PARTNERS } from "@/lib/data/partners";
 import { fadeUp } from "@/lib/animations";
+import { cn } from "@/lib/utils";
 
-function PartnerLogo({ name, slug }: { name: string; slug: string }) {
+function PartnerLogo({ name, file, scale = 1 }: { name: string; file: string; scale?: number }) {
   return (
-    <Image
-      src={`/images/partners/${slug}.svg`}
-      alt={name}
-      width={140}
-      height={48}
-      loading="lazy"
-      className="h-8 w-auto max-w-[120px] shrink-0 object-contain opacity-70 transition-opacity hover:opacity-100 sm:h-9 sm:max-w-[140px]"
-    />
+    <div className="flex h-[70px] items-center px-3 sm:h-[78px] sm:px-4 lg:h-[94px]">
+      <Image
+        src={`/images/partners/${file}`}
+        alt={name}
+        width={400}
+        height={94}
+        loading="lazy"
+        style={{ height: `calc(var(--partner-logo-h) * ${scale})`, width: "auto" }}
+        className={cn(
+          "w-auto max-w-none object-contain opacity-85 transition-opacity duration-300 hover:opacity-100",
+          "[--partner-logo-h:70px] sm:[--partner-logo-h:78px] lg:[--partner-logo-h:94px]"
+        )}
+      />
+    </div>
   );
 }
 
 export default function Partners() {
-  const marqueeItems = [...PARTNERS, ...PARTNERS];
-
   return (
     <Section className="border-b border-gold/10 py-14 sm:py-16">
       <Container>
@@ -36,30 +43,22 @@ export default function Partners() {
           Нам доверяют
         </motion.p>
 
-        <div className="overflow-hidden lg:hidden">
-          <div className="animate-marquee flex w-max items-center gap-10">
-            {marqueeItems.map((partner, i) => (
-              <div key={`${partner.slug}-${i}`} className="flex shrink-0 items-center justify-center px-2">
-                <PartnerLogo name={partner.name} slug={partner.slug} />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="hidden items-center justify-between gap-6 lg:flex xl:gap-8">
-          {PARTNERS.map((partner, i) => (
-            <motion.div
-              key={partner.slug}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05, duration: 0.5 }}
-              className="flex items-center justify-center"
-            >
-              <PartnerLogo name={partner.name} slug={partner.slug} />
-            </motion.div>
+        <Swiper
+          modules={[Autoplay, FreeMode]}
+          slidesPerView="auto"
+          spaceBetween={40}
+          loop
+          freeMode={{ momentum: false }}
+          speed={5000}
+          autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          className="partners-swiper"
+        >
+          {PARTNERS.map((partner) => (
+            <SwiperSlide key={partner.file} className="!w-auto">
+              <PartnerLogo name={partner.name} file={partner.file} scale={partner.scale} />
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </Container>
     </Section>
   );

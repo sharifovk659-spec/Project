@@ -14,6 +14,10 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
 
+  const scrollToShowreel = () => {
+    document.getElementById("showreel")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
     if (!sectionRef.current || !bgRef.current) return;
 
@@ -104,7 +108,7 @@ export default function Hero() {
             transition={{ delay: 0.8, duration: 0.6 }}
             className="hidden lg:block"
           >
-            <PlayButton size="lg" label="Showreel" />
+            <PlayButton size="lg" label="Showreel" onClick={scrollToShowreel} />
           </motion.div>
         </div>
 
@@ -114,7 +118,7 @@ export default function Hero() {
           transition={{ delay: 0.9, duration: 0.5 }}
           className="absolute right-5 bottom-24 lg:hidden"
         >
-          <PlayButton size="sm" label="Showreel" />
+          <PlayButton size="sm" label="Showreel" onClick={scrollToShowreel} />
         </motion.div>
       </Container>
 

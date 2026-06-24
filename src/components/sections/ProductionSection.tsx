@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
-import PlayButton from "@/components/ui/PlayButton";
+import ShowreelSlider from "@/components/ui/ShowreelSlider";
 import { PRODUCTION_ITEMS } from "@/lib/data/production";
 import { fadeUp } from "@/lib/animations";
 
@@ -92,22 +92,9 @@ export default function ProductionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.7 }}
-          className="group relative mt-16 overflow-hidden rounded-2xl border border-gold/20 sm:mt-20"
+          className="mt-16 sm:mt-20"
         >
-          <div className="relative aspect-[21/9] min-h-[200px] sm:min-h-[280px]">
-            <Image
-              src="/images/production/showreel-bg.svg"
-              alt="Production showreel background"
-              fill
-              loading="lazy"
-              sizes="100vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-background/50" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <PlayButton size="lg" label="Смотреть Showreel" />
-            </div>
-          </div>
+          <ShowreelSlider />
         </motion.div>
       </Container>
     </Section>

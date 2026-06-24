@@ -14,13 +14,5 @@ export const STATS: StatItem[] = [
   { value: "30+", label: "партнёров и брендов", icon: HiOutlineUserGroup },
 ];
 
-export const PARTNERS = [
-  { name: "Coca-Cola", slug: "coca-cola" },
-  { name: "Somon Air", slug: "somon-air" },
-  { name: "Hyatt Regency", slug: "hyatt-regency" },
-  { name: "Royal", slug: "royal" },
-  { name: "Kimchi", slug: "kimchi" },
-  { name: "Amani", slug: "amani" },
-  { name: "The Garden", slug: "the-garden" },
-  { name: "Prime Technology", slug: "prime-technology" },
-] as const;
+export { PARTNERS } from "./partners";
+export type { Partner } from "./partners";

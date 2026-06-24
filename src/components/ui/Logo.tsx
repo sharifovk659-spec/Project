@@ -11,10 +11,10 @@ export default function Logo({ className, priority = false }: LogoProps) {
     <Image
       src="/images/logo-eterna.png"
       alt="ETERNA Production"
-      width={180}
-      height={72}
+      width={240}
+      height={96}
       priority={priority}
-      className={cn("h-10 w-auto object-contain sm:h-12", className)}
+      className={cn("h-12 w-auto object-contain sm:h-14", className)}
     />
   );
 }

@@ -9,6 +9,8 @@ interface ButtonProps {
   variant?: "primary" | "outline" | "ghost";
   className?: string;
   onClick?: () => void;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 const variants = {
@@ -25,10 +27,13 @@ export default function Button({
   variant = "primary",
   className,
   onClick,
+  type = "button",
+  disabled = false,
 }: ButtonProps) {
   const classes = cn(
     "inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium tracking-widest uppercase transition-colors duration-300",
     variants[variant],
+    disabled && "pointer-events-none opacity-60",
     className
   );
 
@@ -47,11 +52,12 @@ export default function Button({
 
   return (
     <motion.button
-      type="button"
+      type={type}
+      disabled={disabled}
       className={classes}
       onClick={onClick}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={{ scale: disabled ? 1 : 1.02 }}
+      whileTap={{ scale: disabled ? 1 : 0.98 }}
     >
       {children}
     </motion.button>

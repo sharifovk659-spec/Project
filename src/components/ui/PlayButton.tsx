@@ -8,6 +8,7 @@ interface PlayButtonProps {
   size?: "sm" | "lg";
   label?: string;
   className?: string;
+  onClick?: () => void;
 }
 
 const sizes = {
@@ -20,12 +21,13 @@ const iconSizes = {
   lg: "text-2xl",
 };
 
-export default function PlayButton({ size = "lg", label, className }: PlayButtonProps) {
+export default function PlayButton({ size = "lg", label, className, onClick }: PlayButtonProps) {
   return (
     <div className={cn("flex flex-col items-center gap-3", className)}>
       <motion.button
         type="button"
         aria-label={label ?? "Play"}
+        onClick={onClick}
         animate={{ scale: [1, 1.06, 1] }}
         transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
         whileHover={{ scale: 1.08 }}

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
-import Button from "@/components/ui/Button";
+import ContactForm, { ContactInfo } from "@/components/sections/ContactForm";
 import { fadeUp } from "@/lib/animations";
 
 export default function Cta() {
@@ -26,36 +26,53 @@ export default function Cta() {
               sizes="100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-background/75" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(200,155,92,0.15)_0%,transparent_50%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(200,155,92,0.1)_0%,transparent_45%)]" />
+            <div className="absolute inset-0 bg-background/85" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(200,155,92,0.12)_0%,transparent_50%)]" />
           </div>
 
-          <div className="relative px-6 py-16 text-center sm:px-12 sm:py-20 lg:py-24">
-            <motion.h2
-              custom={0}
-              variants={fadeUp}
-              className="font-display text-3xl leading-tight font-light tracking-wide text-beige sm:text-4xl lg:text-5xl"
-            >
-              ГОТОВЫ К НОВОМУ
-              <br />
-              <span className="text-gradient-gold">ПРОЕКТУ?</span>
-            </motion.h2>
+          <div className="relative grid gap-10 px-6 py-12 sm:px-10 sm:py-14 lg:grid-cols-2 lg:gap-14 lg:px-14 lg:py-16">
+            <div>
+              <motion.p
+                custom={0}
+                variants={fadeUp}
+                className="mb-4 text-xs tracking-[0.35em] text-gold uppercase"
+              >
+                Контакты
+              </motion.p>
 
-            <motion.p
-              custom={1}
-              variants={fadeUp}
-              className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-beige-muted sm:mt-6 sm:text-lg"
-            >
-              Оставьте заявку и мы свяжемся с вами в ближайшее время
-            </motion.p>
+              <motion.h2
+                custom={1}
+                variants={fadeUp}
+                className="font-display text-3xl leading-tight font-light tracking-wide text-beige sm:text-4xl"
+              >
+                ГОТОВЫ К НОВОМУ
+                <br />
+                <span className="text-gradient-gold">ПРОЕКТУ?</span>
+              </motion.h2>
 
-            <motion.div custom={2} variants={fadeUp} className="mt-8 sm:mt-10">
-              <Button href="#contact" className="px-10 py-4 text-xs sm:text-sm">
-                Оставить заявку
-              </Button>
+              <motion.p
+                custom={2}
+                variants={fadeUp}
+                className="mt-5 max-w-md text-sm leading-relaxed text-beige-muted sm:text-base"
+              >
+                Оставьте заявку — мы свяжемся с вами в ближайшее время и обсудим ваш проект.
+              </motion.p>
+
+              <motion.div custom={3} variants={fadeUp} className="mt-8 hidden lg:block">
+                <ContactInfo />
+              </motion.div>
+            </div>
+
+            <motion.div custom={4} variants={fadeUp}>
+              <ContactForm />
+            </motion.div>
+
+            <motion.div custom={5} variants={fadeUp} className="lg:hidden">
+              <ContactInfo />
             </motion.div>
           </div>
+
+          <div className="gold-line opacity-60" />
         </motion.div>
       </Container>
     </Section>
