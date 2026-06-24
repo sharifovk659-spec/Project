@@ -175,3 +175,20 @@ body {
   opacity: 1;
   transform: scale(1.15);
 }
+
+.team-gallery-swiper .swiper-pagination {
+  bottom: 0 !important;
+}
+
+.team-gallery-swiper .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  opacity: 0.35;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.team-gallery-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  transform: scale(1.15);
+}

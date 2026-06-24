@@ -1,8 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { HiOutlineArrowRight } from "react-icons/hi";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
@@ -62,8 +67,8 @@ function AboutImage({
         style={{ objectPosition }}
       />
       {overlay ? (
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-3 py-3 sm:px-4 sm:py-4">
-          <p className="whitespace-pre-line text-[8px] leading-snug font-semibold tracking-[0.12em] text-gold uppercase sm:text-[9px] sm:tracking-[0.16em]">
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-4 py-4 sm:px-4 sm:py-4">
+          <p className="whitespace-pre-line text-[10px] leading-snug font-semibold tracking-[0.14em] text-gold uppercase sm:text-[9px] sm:tracking-[0.16em]">
             {overlay}
           </p>
         </div>
@@ -73,6 +78,16 @@ function AboutImage({
 }
 
 export default function AboutSection() {
+  const [mobileSlider, setMobileSlider] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 1023px)");
+    const update = () => setMobileSlider(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
   return (
     <Section id="about" className="relative overflow-hidden border-t border-gold/10 py-12 sm:py-16">
       <Container>
@@ -185,24 +200,46 @@ export default function AboutSection() {
           </motion.a>
         </motion.div>
 
-        {/* Row 4: 6 portraits */}
+        {/* Row 4: team portraits — 1 per slide on mobile, 6 in a row on desktop */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
-          className="mt-4 grid grid-cols-6 gap-1.5 sm:gap-2 lg:mt-5 lg:gap-3"
+          className="team-gallery-swiper mt-4 overflow-hidden lg:mt-5"
         >
-          {TEAM_GALLERY.map((member) => (
-            <AboutImage
-              key={member.src}
-              src={member.src}
-              alt={member.alt}
-              overlay={"overlay" in member ? member.overlay : undefined}
-              aspectClass="aspect-[3/4]"
-              objectPosition="center top"
-            />
-          ))}
+          <Swiper
+            key={mobileSlider ? "team-mobile" : "team-desktop"}
+            modules={[Pagination, Autoplay]}
+            slidesPerView={1}
+            spaceBetween={12}
+            loop={mobileSlider}
+            autoplay={
+              mobileSlider
+                ? { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }
+                : false
+            }
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: { slidesPerView: 2, spaceBetween: 10 },
+              768: { slidesPerView: 3, spaceBetween: 12 },
+              1024: { slidesPerView: 6, spaceBetween: 12 },
+            }}
+            className="pb-8 sm:pb-9"
+          >
+            {TEAM_GALLERY.map((member) => (
+              <SwiperSlide key={member.src}>
+                <AboutImage
+                  src={member.src}
+                  alt={member.alt}
+                  overlay={"overlay" in member ? member.overlay : undefined}
+                  aspectClass="aspect-[3/4]"
+                  objectPosition="center top"
+                  imageSizes="(max-width: 640px) 85vw, (max-width: 1024px) 30vw, 200px"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </motion.div>
 
         {/* Row 5: stats */}
