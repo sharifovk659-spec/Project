@@ -8,7 +8,17 @@ import { PARTNERS } from "@/lib/data/partners";
 import { fadeUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
-function PartnerLogo({ name, file, scale = 1 }: { name: string; file: string; scale?: number }) {
+function PartnerLogo({
+  name,
+  file,
+  scale = 1,
+  maxWidth,
+}: {
+  name: string;
+  file: string;
+  scale?: number;
+  maxWidth?: number;
+}) {
   return (
     <div className="flex h-14 items-center px-2 sm:h-16 sm:px-3 lg:h-[72px]">
       <Image
@@ -17,9 +27,14 @@ function PartnerLogo({ name, file, scale = 1 }: { name: string; file: string; sc
         width={280}
         height={72}
         loading="lazy"
-        style={{ height: `calc(var(--partner-logo-h) * ${scale})`, width: "auto" }}
+        style={{
+          height: `calc(var(--partner-logo-h) * ${scale})`,
+          width: "auto",
+          maxWidth: maxWidth ? `${maxWidth}px` : undefined,
+        }}
         className={cn(
-          "w-auto max-w-[120px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100 sm:max-w-[140px] lg:max-w-[150px]",
+          "w-auto object-contain opacity-85 transition-opacity duration-300 hover:opacity-100",
+          !maxWidth && "max-w-[120px] sm:max-w-[140px] lg:max-w-[150px]",
           "[--partner-logo-h:56px] sm:[--partner-logo-h:64px] lg:[--partner-logo-h:72px]"
         )}
       />
@@ -47,7 +62,12 @@ export default function Partners() {
           <div className="partners-marquee-track flex w-max items-center gap-8 sm:gap-10">
             {marqueeItems.map((partner, i) => (
               <div key={`${partner.file}-${i}`} className="flex shrink-0 items-center justify-center">
-                <PartnerLogo name={partner.name} file={partner.file} scale={partner.scale} />
+                <PartnerLogo
+                  name={partner.name}
+                  file={partner.file}
+                  scale={partner.scale}
+                  maxWidth={partner.maxWidth}
+                />
               </div>
             ))}
           </div>

@@ -3,20 +3,22 @@ export interface Partner {
   file: string;
   /** Boost for logos with extra padding inside the PNG */
   scale?: number;
+  /** Wider cap for logos that stay small at default max-width */
+  maxWidth?: number;
 }
 
 export const PARTNERS: Partner[] = [
   { name: "Coca-Cola", file: "coca-cola.png" },
   { name: "Gazprom", file: "gazprom.png" },
-  { name: "EuroMed", file: "euromed.png", scale: 1.4 },
+  { name: "EuroMed", file: "euromed.png", scale: 2.05, maxWidth: 200 },
   { name: "Prime Technology", file: "prime-technology.png", scale: 1.25 },
   { name: "Kimchi", file: "kimchi.png" },
   { name: "GS Clinic", file: "gs-clinic.png" },
   { name: "x-fit Premium", file: "xfit.png" },
-  { name: "Nutri Food", file: "nutri-food.png", scale: 1.35 },
+  { name: "Nutri Food", file: "nutri-food.png", scale: 2, maxWidth: 195 },
   { name: "Nishman", file: "nishman.png", scale: 1.15 },
   { name: "Asar Group", file: "asar-group.png", scale: 1.4 },
-  { name: "The Garden", file: "the-garden.png", scale: 1.3 },
+  { name: "The Garden", file: "the-garden.png", scale: 1.95, maxWidth: 190 },
   { name: "Pizzeria Alla Torre", file: "pizzeria-alla-torre.png" },
   { name: "Community", file: "community.png" },
   { name: "MCK Lounge", file: "mck-lounge.png" },

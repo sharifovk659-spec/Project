@@ -60,8 +60,8 @@ export default function ShowreelSlider() {
                     fill
                     priority={index === 0}
                     loading={index === 0 ? undefined : "lazy"}
-                    sizes="(max-width: 1280px) 100vw, 1200px"
-                    quality={92}
+                    sizes="(max-width: 1280px) 100vw, 1400px"
+                    quality={95}
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/25 to-background/10" />
@@ -83,6 +83,7 @@ export default function ShowreelSlider() {
                         size="sm"
                         label="Смотреть"
                         onClick={() => setPlaying(true)}
+                        animated
                       />
                     </div>
                   )}
