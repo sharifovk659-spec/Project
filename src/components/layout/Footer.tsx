@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram, FaTelegram, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaTelegram, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -13,6 +13,7 @@ import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
 const socialIcons = {
   instagram: FaInstagram,
   telegram: FaTelegram,
+  whatsapp: FaWhatsapp,
   youtube: FaYoutube,
 } as const;
 

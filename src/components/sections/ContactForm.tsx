@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from "react-icons/hi";
-import { FaInstagram, FaTelegram } from "react-icons/fa";
+import { FaInstagram, FaTelegram, FaWhatsapp } from "react-icons/fa";
 import Button from "@/components/ui/Button";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { FOOTER_CONTACTS, SOCIAL_LINKS } from "@/lib/data/footer";
@@ -172,6 +172,7 @@ export default function ContactForm() {
 export function ContactInfo() {
   const { t } = useLocale();
   const telegram = SOCIAL_LINKS.find((link) => link.icon === "telegram");
+  const whatsapp = SOCIAL_LINKS.find((link) => link.icon === "whatsapp");
   const instagram = SOCIAL_LINKS.find((link) => link.icon === "instagram");
 
   return (
@@ -196,6 +197,19 @@ export function ContactInfo() {
             <FaTelegram className="text-lg text-gold" />
           </span>
           <span className="break-all">@PLANOVNET</span>
+        </a>
+      ) : null}
+      {whatsapp ? (
+        <a
+          href={whatsapp.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex min-w-0 items-center gap-3 text-sm text-beige-muted transition-colors hover:text-beige"
+        >
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-gold/5">
+            <FaWhatsapp className="text-lg text-gold" />
+          </span>
+          <span className="break-words sm:whitespace-nowrap">{FOOTER_CONTACTS.phone}</span>
         </a>
       ) : null}
       {instagram ? (

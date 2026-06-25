@@ -14,5 +14,6 @@ export const FOOTER_CONTACTS = {
 export const SOCIAL_LINKS = [
   { label: "Instagram", href: "https://www.instagram.com/planovnet", icon: "instagram" },
   { label: "Telegram", href: "https://t.me/PLANOVNET", icon: "telegram" },
+  { label: "WhatsApp", href: "https://wa.me/992119010000", icon: "whatsapp" },
   { label: "YouTube", href: "https://youtube.com", icon: "youtube" },
 ] as const;
