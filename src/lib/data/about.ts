@@ -34,6 +34,7 @@ export const ABOUT_STATS: AboutStat[] = [
 
 export const ABOUT_IMAGES = {
   teamGroup: "/images/about/team-group.png",
+  handshake: "/images/about/handshake.jpg",
   portraitCreative: "/images/about/portrait-creative.jpg",
   team: [
     "/images/about/team-1.jpg",

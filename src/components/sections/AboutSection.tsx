@@ -14,14 +14,14 @@ import Button from "@/components/ui/Button";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { ABOUT_IMAGES, ABOUT_STATS, ABOUT_VALUES } from "@/lib/data/about";
 import { fadeUp } from "@/lib/animations";
-import { IMAGE_QUALITY, IMAGE_QUALITY_HIGH, IMAGE_SIZES, LOW_RES_TEAM_WIDTH } from "@/lib/image";
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
 import { cn } from "@/lib/utils";
 
 const TEAM_GALLERY_SOURCES = [
   { src: ABOUT_IMAGES.team[4], overlay: true },
-  { src: ABOUT_IMAGES.team[0], highQuality: true },
+  { src: ABOUT_IMAGES.team[0] },
   { src: ABOUT_IMAGES.team[1] },
-  { src: ABOUT_IMAGES.team[2], highQuality: true },
+  { src: ABOUT_IMAGES.team[2] },
   { src: ABOUT_IMAGES.team[3] },
   { src: ABOUT_IMAGES.portraitCreative },
 ] as const;
@@ -36,8 +36,6 @@ function AboutImage({
   objectPosition = "center",
   objectFit = "cover",
   imageSizes = IMAGE_SIZES.teamPortrait,
-  lowRes = false,
-  highQuality = false,
 }: {
   src: string;
   alt: string;
@@ -48,44 +46,7 @@ function AboutImage({
   objectPosition?: string;
   objectFit?: "cover" | "contain";
   imageSizes?: string;
-  lowRes?: boolean;
-  highQuality?: boolean;
 }) {
-  const quality = highQuality ? IMAGE_QUALITY_HIGH : IMAGE_QUALITY;
-  const sizes = highQuality ? IMAGE_SIZES.teamPortraitHigh : imageSizes;
-
-  if (lowRes) {
-    return (
-      <div
-        className={cn(
-          "relative flex items-start justify-center overflow-hidden rounded-lg border border-gold/15 bg-dark",
-          aspectClass,
-          className
-        )}
-      >
-        <Image
-          src={src}
-          alt={alt}
-          width={LOW_RES_TEAM_WIDTH}
-          height={320}
-          priority={priority}
-          loading={priority ? undefined : "lazy"}
-          quality={quality}
-          unoptimized
-          className="h-full w-auto max-w-full object-contain object-top"
-          style={{ objectPosition }}
-        />
-        {overlay ? (
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-4 py-4 sm:px-4 sm:py-4">
-            <p className="whitespace-pre-line text-[10px] leading-snug font-semibold tracking-[0.14em] text-gold uppercase sm:text-[9px] sm:tracking-[0.16em]">
-              {overlay}
-            </p>
-          </div>
-        ) : null}
-      </div>
-    );
-  }
-
   return (
     <div
       className={cn(
@@ -100,8 +61,8 @@ function AboutImage({
         fill
         priority={priority}
         loading={priority ? undefined : "lazy"}
-        sizes={sizes}
-        quality={quality}
+        sizes={imageSizes}
+        quality={IMAGE_QUALITY}
         className={objectFit === "contain" ? "object-contain" : "object-cover"}
         style={{ objectPosition }}
       />
@@ -275,11 +236,29 @@ export default function AboutSection() {
                   aspectClass="aspect-[3/4]"
                   objectPosition="center top"
                   priority={index < 2}
-                  highQuality={"highQuality" in member && member.highQuality}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
+        </motion.div>
+
+        {/* Handshake — bottom of Our Team, not in gallery carousel */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6 }}
+          className="mt-8 flex justify-start sm:mt-10"
+        >
+          <AboutImage
+            src={ABOUT_IMAGES.handshake}
+            alt={t("about.handshakeAlt")}
+            overlay={t("about.handshakeOverlay")}
+            aspectClass="aspect-[3/4]"
+            objectPosition="center"
+            imageSizes="(max-width: 640px) 160px, 220px"
+            className="w-full max-w-[160px] sm:max-w-[190px] lg:max-w-[220px]"
+          />
         </motion.div>
 
         {/* Row 5: stats */}

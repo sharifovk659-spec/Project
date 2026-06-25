@@ -55,6 +55,7 @@ $jobs = @(
   @{ src = (Find-Surati "3 (1).png");     dest = "team-3.jpg";           maxW = 2000; jpg = $true }
   @{ src = (Find-Surati "surati 6.png");  dest = "team-4.jpg";           maxW = 2000; jpg = $true }
   @{ src = (Find-Surati "surati 5.png");  dest = "team-5.jpg";           maxW = 2000; jpg = $true }
+  @{ src = (Find-Surati "DSCF4708*.jpg"); dest = "handshake.jpg";       maxW = 2000; jpg = $true }
 )
 
 foreach ($j in $jobs) {
