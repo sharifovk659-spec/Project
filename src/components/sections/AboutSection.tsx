@@ -256,8 +256,8 @@ export default function AboutSection() {
             overlay={t("about.handshakeOverlay")}
             aspectClass="aspect-[3/4]"
             objectPosition="center"
-            imageSizes="(max-width: 640px) 160px, 220px"
-            className="w-full max-w-[160px] sm:max-w-[190px] lg:max-w-[220px]"
+            imageSizes="(max-width: 640px) 320px, 480px"
+            className="w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[480px]"
           />
         </motion.div>
 
