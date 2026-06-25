@@ -248,7 +248,7 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
-          className="mt-8 flex justify-start sm:mt-10"
+          className="mt-8 w-full sm:mt-10 sm:flex sm:justify-start"
         >
           <AboutImage
             src={ABOUT_IMAGES.handshake}
@@ -256,8 +256,8 @@ export default function AboutSection() {
             overlay={t("about.handshakeOverlay")}
             aspectClass="aspect-[3/4]"
             objectPosition="center"
-            imageSizes="(max-width: 640px) 320px, 480px"
-            className="w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[480px]"
+            imageSizes="(max-width: 639px) 100vw, 480px"
+            className="w-full sm:max-w-[400px] lg:max-w-[480px]"
           />
         </motion.div>
 
