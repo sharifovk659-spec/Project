@@ -33,12 +33,12 @@ export default function Cta() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(200,155,92,0.12)_0%,transparent_50%)]" />
           </div>
 
-          <div className="relative grid gap-8 px-6 py-10 sm:px-10 sm:py-12 lg:grid-cols-2 lg:gap-10 lg:px-12 lg:py-14">
-            <div>
+          <div className="relative grid gap-8 px-6 py-10 sm:px-10 sm:py-12 lg:grid-cols-2 lg:items-stretch lg:gap-10 lg:px-12 lg:py-14">
+            <div className="flex flex-col items-center justify-center py-4 text-center sm:py-6 lg:min-h-full lg:self-stretch lg:py-8">
               <motion.p
                 custom={0}
                 variants={fadeUp}
-                className="mb-4 text-xs tracking-[0.35em] text-gold uppercase"
+                className="mb-4 text-xs font-bold tracking-[0.35em] text-gold uppercase"
               >
                 {t("contact.eyebrow")}
               </motion.p>
@@ -46,7 +46,7 @@ export default function Cta() {
               <motion.h2
                 custom={1}
                 variants={fadeUp}
-                className="font-display text-3xl leading-tight font-light tracking-wide text-beige sm:text-4xl"
+                className="font-display text-3xl leading-tight font-bold tracking-wide text-beige sm:text-4xl"
               >
                 {t("contact.title1")}
                 <br />
@@ -56,13 +56,13 @@ export default function Cta() {
               <motion.p
                 custom={2}
                 variants={fadeUp}
-                className="mt-4 max-w-md text-sm leading-relaxed text-beige-muted sm:text-base lg:max-w-lg"
+                className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-beige-muted sm:text-base lg:max-w-lg"
               >
                 {t("contact.description")}
               </motion.p>
             </div>
 
-            <motion.div custom={3} variants={fadeUp}>
+            <motion.div custom={3} variants={fadeUp} className="lg:flex lg:flex-col lg:justify-center">
               <ContactForm />
             </motion.div>
           </div>

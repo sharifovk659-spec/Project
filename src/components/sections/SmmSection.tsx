@@ -30,14 +30,14 @@ export default function SmmSection() {
               01
             </span>
 
-            <motion.p custom={0} variants={fadeUp} className="relative mb-4 text-xs tracking-[0.4em] text-gold uppercase">
+            <motion.p custom={0} variants={fadeUp} className="relative mb-4 text-xs font-bold tracking-[0.4em] text-gold uppercase">
               {t("smm.eyebrow")}
             </motion.p>
 
             <motion.h2
               custom={1}
               variants={fadeUp}
-              className="relative font-display text-3xl leading-tight font-light tracking-wide text-beige sm:text-4xl lg:text-5xl"
+              className="relative font-display text-3xl leading-tight font-bold tracking-wide text-beige sm:text-4xl lg:text-5xl"
             >
               {t("smm.title1")}
               <br />

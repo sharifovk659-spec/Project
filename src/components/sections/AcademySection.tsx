@@ -28,14 +28,14 @@ export default function AcademySection() {
               03
             </span>
 
-            <motion.p custom={0} variants={fadeUp} className="relative mb-4 text-xs tracking-[0.4em] text-gold uppercase">
+            <motion.p custom={0} variants={fadeUp} className="relative mb-4 text-xs font-bold tracking-[0.4em] text-gold uppercase">
               {t("academy.eyebrow")}
             </motion.p>
 
             <motion.h2
               custom={1}
               variants={fadeUp}
-              className="relative font-display text-3xl leading-tight font-light tracking-wide text-beige sm:text-4xl lg:text-5xl"
+              className="relative font-display text-3xl leading-tight font-bold tracking-wide text-beige sm:text-4xl lg:text-5xl"
             >
               {t("academy.title1")}
               <br />
@@ -76,7 +76,7 @@ export default function AcademySection() {
                   className="card-hover group rounded-2xl border border-gold/10 bg-dark p-6 hover:shadow-[0_0_40px_rgba(200,155,92,0.12)] sm:p-8"
                 >
                   <Icon className="mb-5 text-4xl text-gold transition-transform duration-300 group-hover:scale-110 sm:text-5xl" />
-                  <h3 className="font-display text-xl text-beige sm:text-2xl">{t(`academy.cards.${card.id}.title`)}</h3>
+                  <h3 className="font-display text-xl font-bold text-beige sm:text-2xl">{t(`academy.cards.${card.id}.title`)}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-beige-muted sm:text-base">
                     {t(`academy.cards.${card.id}.description`)}
                   </p>

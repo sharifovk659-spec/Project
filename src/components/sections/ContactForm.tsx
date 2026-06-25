@@ -13,10 +13,13 @@ const SERVICES = [
   "contact.services.video",
   "contact.services.photo",
   "contact.services.academy",
+  "contact.services.other",
+] as const;
+
+const BUDGET_OPTIONS = [
   "contact.services.package500",
   "contact.services.package700",
   "contact.services.package1000",
-  "contact.services.other",
 ] as const;
 
 const inputClass =
@@ -26,6 +29,7 @@ export default function ContactForm() {
   const { t } = useLocale();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [budget, setBudget] = useState("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,6 +41,7 @@ export default function ContactForm() {
     const phone = String(data.get("phone") ?? "");
     const email = String(data.get("email") ?? "");
     const service = String(data.get("service") ?? "");
+    const selectedBudget = String(data.get("budget") ?? "");
     const message = String(data.get("message") ?? "");
 
     const body = [
@@ -45,6 +50,7 @@ export default function ContactForm() {
       `${t("contact.form.mailName")}: ${name}`,
       `${t("contact.form.mailPhone")}: ${phone}`,
       email ? `${t("contact.form.mailEmail")}: ${email}` : null,
+      selectedBudget ? `${t("contact.form.mailBudget")}: ${selectedBudget}` : null,
       `${t("contact.form.mailService")}: ${service}`,
       message ? `${t("contact.form.mailMessage")}: ${message}` : null,
     ]
@@ -56,6 +62,7 @@ export default function ContactForm() {
 
     setSubmitted(true);
     setLoading(false);
+    setBudget("");
     form.reset();
   };
 
@@ -66,7 +73,7 @@ export default function ContactForm() {
         animate={{ opacity: 1, y: 0 }}
         className="rounded-2xl border border-gold/30 bg-background/50 px-6 py-10 text-center backdrop-blur-sm sm:px-10 sm:py-12"
       >
-        <p className="font-display text-2xl text-beige sm:text-3xl">{t("contact.form.thanks")}</p>
+        <p className="font-display text-2xl font-bold text-beige sm:text-3xl">{t("contact.form.thanks")}</p>
         <p className="mt-3 text-sm leading-relaxed text-beige-muted sm:text-base">
           {t("contact.form.success")}
         </p>
@@ -143,9 +150,43 @@ export default function ContactForm() {
             ))}
           </select>
         </motion.div>
+
+        <motion.div
+          custom={4}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="col-span-2"
+        >
+          <p className="mb-2 text-[10px] tracking-[0.2em] text-gold uppercase">{t("contact.form.budget")}</p>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3">
+            {BUDGET_OPTIONS.map((key) => {
+              const label = t(key);
+              const selected = budget === label;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setBudget(selected ? "" : label)}
+                  className={cn(
+                    "rounded-lg border py-2.5 text-center text-xs tracking-wide transition-all sm:py-3 sm:text-sm",
+                    selected
+                      ? "border-gold/50 bg-gold/10 text-gold"
+                      : "border-gold/20 bg-background/40 text-beige-muted hover:border-gold/35 hover:text-beige",
+                  )}
+                  aria-pressed={selected}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+          <input type="hidden" name="budget" value={budget} />
+        </motion.div>
       </div>
 
-      <motion.div custom={4} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <motion.div custom={5} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <label htmlFor="message" className="mb-2 block text-[10px] tracking-[0.2em] text-gold uppercase">
           {t("contact.form.message")}
         </label>
@@ -158,7 +199,7 @@ export default function ContactForm() {
         />
       </motion.div>
 
-      <motion.div custom={5} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <motion.div custom={6} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <Button type="submit" disabled={loading} className="w-full px-10 py-4 text-xs sm:w-auto sm:text-sm">
           {loading ? t("contact.form.submitting") : t("contact.form.submit")}
         </Button>

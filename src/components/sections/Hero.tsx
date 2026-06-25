@@ -65,7 +65,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="mb-5 text-xs tracking-[0.35em] text-gold uppercase sm:text-sm"
+              className="mb-5 text-xs font-bold tracking-[0.35em] text-gold uppercase sm:text-sm"
             >
               {t("hero.eyebrow")}
             </motion.p>
@@ -75,7 +75,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="font-display text-[clamp(2.5rem,11vw,7.5rem)] leading-[0.95] font-light tracking-[0.06em] text-beige sm:tracking-[0.08em]"
+              className="font-display text-[clamp(2.5rem,11vw,7.5rem)] leading-[0.95] font-bold tracking-[0.06em] text-beige sm:tracking-[0.08em]"
             >
               {t("hero.title1")}
               <br />

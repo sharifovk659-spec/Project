@@ -130,7 +130,7 @@ export default function ShowreelSlider() {
             <p className="truncate text-[10px] tracking-[0.2em] text-beige/90 uppercase sm:text-xs">
               {activeVideo.title}
             </p>
-            <p className="shrink-0 font-display text-xs tracking-[0.3em] text-gold/80 sm:text-sm">
+            <p className="shrink-0 font-display text-xs font-bold tracking-[0.3em] text-gold/80 sm:text-sm">
               {slideNumber}
               <span className="text-gold/40"> / </span>
               {slideTotal}

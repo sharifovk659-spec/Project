@@ -14,14 +14,15 @@ import Button from "@/components/ui/Button";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { ABOUT_IMAGES, ABOUT_STATS, ABOUT_VALUES } from "@/lib/data/about";
 import { fadeUp } from "@/lib/animations";
-import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
+import { IMAGE_QUALITY_HIGH, IMAGE_SIZES } from "@/lib/image";
+import DigitalSolutionsBlock from "@/components/sections/DigitalSolutionsBlock";
 import { cn } from "@/lib/utils";
 
 const TEAM_GALLERY_SOURCES = [
-  { src: ABOUT_IMAGES.team[4], overlay: true },
-  { src: ABOUT_IMAGES.team[0], overlayKey: "about.members.farrukh" },
+  { src: ABOUT_IMAGES.team[4], overlayKey: "about.members.ruslanDirector" },
   { src: ABOUT_IMAGES.team[1], overlayKey: "about.members.devashtich" },
-  { src: ABOUT_IMAGES.team[2], overlayKey: "about.members.deniz" },
+  { src: ABOUT_IMAGES.team[0], overlayKey: "about.members.farrukh" },
+  { src: ABOUT_IMAGES.team[2], overlayKey: "about.members.oba", flipHorizontal: true },
   { src: ABOUT_IMAGES.team[3], overlayKey: "about.members.ruslan" },
   { src: ABOUT_IMAGES.portraitCreative, overlayKey: "about.members.yasmin" },
 ] as const;
@@ -36,6 +37,8 @@ function AboutImage({
   objectPosition = "center",
   objectFit = "cover",
   imageSizes = IMAGE_SIZES.teamPortrait,
+  flipHorizontal = false,
+  quality = IMAGE_QUALITY_HIGH,
 }: {
   src: string;
   alt: string;
@@ -46,6 +49,8 @@ function AboutImage({
   objectPosition?: string;
   objectFit?: "cover" | "contain";
   imageSizes?: string;
+  flipHorizontal?: boolean;
+  quality?: number;
 }) {
   return (
     <div
@@ -62,18 +67,86 @@ function AboutImage({
         priority={priority}
         loading={priority ? undefined : "lazy"}
         sizes={imageSizes}
-        quality={IMAGE_QUALITY}
-        className={objectFit === "contain" ? "object-contain" : "object-cover"}
+        quality={quality}
+        className={cn(
+          objectFit === "contain" ? "object-contain" : "object-cover",
+          flipHorizontal && "-scale-x-100",
+        )}
         style={{ objectPosition }}
       />
       {overlay ? (
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-4 py-4 sm:px-4 sm:py-4">
-          <p className="whitespace-pre-line text-[10px] leading-snug font-semibold tracking-[0.14em] text-gold uppercase sm:text-[9px] sm:tracking-[0.16em]">
-            {overlay}
-          </p>
+          {(() => {
+            const lines = overlay.split("\n");
+            const isMember = lines.length === 2;
+            if (isMember) {
+              return (
+                <>
+                  <p className="team-member-name text-base leading-tight text-gold-light sm:text-lg">
+                    {lines[0]}
+                  </p>
+                  <p className="mt-1 font-body text-[9px] font-semibold leading-snug tracking-wide text-gold/80 sm:text-[10px]">
+                    {lines[1]}
+                  </p>
+                </>
+              );
+            }
+            return (
+              <p className="whitespace-pre-line text-[10px] leading-snug font-bold tracking-[0.14em] text-gold sm:text-[9px] sm:tracking-[0.16em]">
+                {overlay}
+              </p>
+            );
+          })()}
         </div>
       ) : null}
     </div>
+  );
+}
+
+function HandshakeBanner() {
+  const { t } = useLocale();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6 }}
+      className="mt-12 w-full sm:mt-14 lg:mt-16"
+    >
+      <div className="relative min-h-[280px] w-full overflow-hidden rounded-xl border border-gold/15 bg-dark sm:min-h-[300px] lg:aspect-[3/1] lg:min-h-0">
+        <Image
+          src={ABOUT_IMAGES.handshake}
+          alt={t("about.handshakeAlt")}
+          fill
+          loading="lazy"
+          sizes={IMAGE_SIZES.handshakeBanner}
+          quality={IMAGE_QUALITY_HIGH}
+          className="object-cover object-center brightness-[0.84] saturate-[0.9]"
+        />
+
+        <div className="pointer-events-none absolute inset-0 bg-black/50" aria-hidden />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-[62%] bg-gradient-to-b from-black/80 via-black/55 to-transparent"
+          aria-hidden
+        />
+
+        <div className="absolute inset-0 flex flex-col items-center justify-start gap-3 px-5 pt-9 pb-8 text-center sm:gap-3.5 sm:px-8 sm:pt-11 md:pt-12 lg:pt-14">
+          <h3 className="font-display max-w-2xl text-[1.35rem] font-bold uppercase leading-[1.15] tracking-[0.08em] text-gold-light drop-shadow-[0_2px_14px_rgba(0,0,0,0.7)] sm:text-2xl md:text-[1.75rem] lg:text-[2rem]">
+            {t("about.handshakeBanner.title")}
+          </h3>
+          <p className="font-body max-w-lg text-xs font-light leading-relaxed tracking-wide text-white/90 drop-shadow-[0_1px_10px_rgba(0,0,0,0.6)] sm:max-w-xl sm:text-sm">
+            {t("about.handshakeBanner.subtitle")}
+          </p>
+          <a
+            href="#contact"
+            className="font-body mt-2 inline-flex shrink-0 items-center justify-center rounded-sm bg-gradient-to-b from-[#f0a030] to-[#d97a18] px-8 py-2.5 text-[11px] font-semibold tracking-[0.12em] text-black uppercase transition-[filter] hover:brightness-110 sm:mt-3 sm:px-9 sm:py-3 sm:text-xs"
+          >
+            {t("about.handshakeBanner.cta")}
+          </a>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -113,8 +186,8 @@ export default function AboutSection() {
 
           <div className="relative z-10 order-1 lg:absolute lg:inset-0 lg:order-none lg:flex lg:items-center lg:py-2">
             <div className="lg:max-w-[50%] xl:max-w-[46%] lg:bg-gradient-to-r lg:from-background lg:via-background/85 lg:to-transparent lg:py-6 lg:pr-8 xl:py-8">
-              <p className="mb-3 text-xs tracking-[0.35em] text-gold uppercase">{t("about.eyebrow")}</p>
-              <h2 className="font-display text-2xl leading-tight font-medium tracking-wide uppercase sm:text-3xl lg:text-[2rem] lg:leading-[1.15]">
+              <p className="mb-3 text-xs font-bold tracking-[0.35em] text-gold uppercase">{t("about.eyebrow")}</p>
+              <h2 className="font-display text-2xl leading-tight font-bold tracking-wide uppercase sm:text-3xl lg:text-[2rem] lg:leading-[1.15]">
                 <span className="text-gradient-gold">
                   {t("about.title1")}
                   <br />
@@ -156,7 +229,7 @@ export default function AboutSection() {
                 <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-gold/25 bg-gold/10 sm:h-11 sm:w-11">
                   <Icon className="text-lg text-gold sm:text-xl" />
                 </span>
-                <p className="text-[11px] font-semibold tracking-[0.14em] text-gold uppercase sm:text-xs">
+                <p className="text-[11px] font-bold tracking-[0.14em] text-gold uppercase sm:text-xs">
                   {t(`about.values.${item.id}.title`)}
                 </p>
                 <p className="mt-2 text-xs leading-relaxed text-beige-muted sm:text-sm">
@@ -174,7 +247,7 @@ export default function AboutSection() {
           viewport={{ once: true, margin: "-60px" }}
           className="mt-10 flex flex-wrap items-center justify-between gap-3 sm:mt-12 lg:mt-14"
         >
-          <motion.p custom={0} variants={fadeUp} className="text-xs tracking-[0.35em] text-gold uppercase">
+          <motion.p custom={0} variants={fadeUp} className="text-xs font-bold tracking-[0.35em] text-gold uppercase">
             {t("about.teamHeading")}
           </motion.p>
           <motion.a
@@ -220,57 +293,18 @@ export default function AboutSection() {
                 <AboutImage
                   src={member.src}
                   alt={t("about.memberAlt")}
-                  overlay={
-                    "overlayKey" in member
-                      ? t(member.overlayKey)
-                      : "overlay" in member && member.overlay
-                        ? t("about.overlay")
-                        : undefined
-                  }
+                  overlay={t(member.overlayKey)}
                   aspectClass="aspect-[3/4]"
                   objectPosition="center top"
                   priority={index < 2}
+                  flipHorizontal={"flipHorizontal" in member && member.flipHorizontal}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
         </motion.div>
 
-        {/* Handshake CTA banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
-          className="mt-12 w-full sm:mt-14 lg:mt-16"
-        >
-          <div className="relative min-h-[280px] w-full overflow-hidden rounded-xl border border-gold/15 bg-dark sm:min-h-[300px] lg:aspect-[3/1] lg:min-h-0">
-            <Image
-              src={ABOUT_IMAGES.handshake}
-              alt={t("about.handshakeAlt")}
-              fill
-              loading="lazy"
-              sizes="(max-width: 1024px) 100vw, 640px"
-              quality={IMAGE_QUALITY}
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-black/20" />
-            <div className="absolute inset-0 flex flex-col items-center justify-start gap-2 px-4 pt-5 pb-6 text-center sm:gap-2.5 sm:px-6 sm:pt-7 md:pt-9 lg:pt-10">
-              <h3 className="font-display text-xl font-medium uppercase leading-tight tracking-wide text-[#d9b078] sm:text-2xl md:text-3xl lg:text-[2rem]">
-                {t("about.handshakeBanner.title")}
-              </h3>
-              <p className="max-w-md text-[11px] leading-relaxed text-white/95 sm:max-w-xl sm:text-sm">
-                {t("about.handshakeBanner.subtitle")}
-              </p>
-              <a
-                href="#contact"
-                className="mt-1 inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-sm bg-gradient-to-b from-[#f0a030] to-[#d97a18] px-7 py-2.5 text-[10px] font-bold tracking-[0.14em] text-black uppercase transition-opacity hover:opacity-90"
-              >
-                {t("about.handshakeBanner.cta")}
-              </a>
-            </div>
-          </div>
-        </motion.div>
+        <HandshakeBanner />
 
         {/* Row 5: stats */}
         <motion.div
@@ -291,7 +325,7 @@ export default function AboutSection() {
                 >
                   <Icon className="mt-0.5 shrink-0 text-lg text-gold sm:mt-0 sm:text-2xl" />
                   <div className="min-w-0 flex-1">
-                    <p className="font-display text-xl font-medium leading-none text-gold sm:text-2xl">
+                    <p className="font-display text-xl font-bold leading-none text-gold sm:text-2xl">
                       {stat.value}
                     </p>
                     <p className="mt-1 text-[11px] leading-snug text-pretty text-beige-muted sm:mt-0.5 sm:text-xs">
@@ -303,6 +337,8 @@ export default function AboutSection() {
             })}
           </div>
         </motion.div>
+
+        <DigitalSolutionsBlock />
       </Container>
     </Section>
   );

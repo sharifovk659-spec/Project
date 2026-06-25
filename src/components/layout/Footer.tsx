@@ -27,7 +27,7 @@ export default function Footer() {
           </div>
 
           <div className="min-w-0 lg:col-span-2">
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-gold uppercase sm:mb-3 sm:text-xs sm:tracking-[0.25em]">
+            <p className="mb-2 text-[10px] font-bold tracking-[0.2em] text-gold uppercase sm:mb-3 sm:text-xs sm:tracking-[0.25em]">
               {t("footer.navigation")}
             </p>
             <ul className="space-y-1.5 sm:space-y-2">
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
 
           <div className="min-w-0 lg:col-span-2">
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-gold uppercase sm:mb-3 sm:text-xs sm:tracking-[0.25em]">
+            <p className="mb-2 text-[10px] font-bold tracking-[0.2em] text-gold uppercase sm:mb-3 sm:text-xs sm:tracking-[0.25em]">
               {t("footer.services")}
             </p>
             <ul className="space-y-1.5 sm:space-y-2">
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
 
           <div className="col-span-2 min-w-0 lg:col-span-3">
-            <p className="mb-3 text-[10px] tracking-[0.2em] text-gold uppercase sm:mb-4 sm:text-xs sm:tracking-[0.25em]">
+            <p className="mb-3 text-[10px] font-bold tracking-[0.2em] text-gold uppercase sm:mb-4 sm:text-xs sm:tracking-[0.25em]">
               {t("footer.contacts")}
             </p>
             <ContactInfo className="space-y-4" />

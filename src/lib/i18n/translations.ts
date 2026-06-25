@@ -45,11 +45,13 @@ export const translations = {
       portfolioLink: "Смотреть портфолио",
       overlay: "Креативный\nподход к\nкаждому проекту",
       members: {
-        farrukh: "Фаррух\nоператор",
-        devashtich: "Деваштич\nоператор монтажер",
-        deniz: "Дениз\nгаффер",
-        ruslan: "Руслан\nфотограф",
-        yasmin: "Ясмин\nмонтажер",
+        ruslanDirector: "Руслан\nДиректор",
+        farrukh: "Фаррух\nКонтент-мейкер",
+        devashtich: "Деваштич\nАрт Директор",
+        oba: "Дениз\nКонтент-мейкер",
+        deniz: "Дениз\nГаффер",
+        ruslan: "Руслан\nКонтент-мейкер",
+        yasmin: "Ясмин\nМонтажер",
       },
       memberAlt: "Член команды",
       values: {
@@ -71,6 +73,57 @@ export const translations = {
         team: "профессионалов в команде",
         experience: "лет опыта в индустрии",
         clients: "довольных клиентов",
+      },
+      digital: {
+        eyebrow: "IT & DIGITAL SOLUTIONS",
+        title1: "РАЗРАБАТЫВАЕМ",
+        title2: "ЦИФРОВЫЕ РЕШЕНИЯ ДЛЯ РОСТА ВАШЕГО БИЗНЕСА",
+        description:
+          "От сайтов и ботов до CRM и автоматизации — мы создаём инструменты, которые упрощают процессы и увеличивают прибыль.",
+        services: {
+          web: {
+            title: "Веб-разработка",
+            description: "Создаём современные, адаптивные сайты и интернет-магазины под ключ.",
+          },
+          telegram: {
+            title: "Telegram-боты",
+            description: "Боты для продаж, поддержки, заказов и автоматизации бизнес-процессов.",
+          },
+          qrMenu: {
+            title: "QR Menu",
+            description: "Электронное меню с QR-кодом, онлайн-заказами и удобным управлением.",
+          },
+          crm: {
+            title: "CRM для стройкомпаний",
+            description: "Управление объектами, клиентами, задачами, договорами и финансами в одной системе.",
+          },
+          mobile: {
+            title: "Мобильные приложения",
+            description: "Разработка приложений для Android и iOS любой сложности.",
+          },
+          support: {
+            title: "Поддержка и развитие",
+            description: "Техническая поддержка, обновление и развитие ваших проектов.",
+          },
+        },
+        values: {
+          reliability: {
+            title: "Надёжность",
+            description: "Стабильные решения и прозрачные сроки",
+          },
+          speed: {
+            title: "Быстрая разработка",
+            description: "От идеи до запуска в кратчайшие сроки",
+          },
+          support: {
+            title: "Поддержка 24/7",
+            description: "Всегда на связи после запуска проекта",
+          },
+          result: {
+            title: "Результат",
+            description: "Рост продаж и эффективности бизнеса",
+          },
+        },
       },
     },
     smm: {
@@ -131,6 +184,7 @@ export const translations = {
         phonePh: "+992 119 01 0000",
         email: "Email",
         emailPh: "email@example.com",
+        budget: "Бюджетный вариант",
         service: "Услуга *",
         servicePh: "Выберите услугу",
         message: "Сообщение",
@@ -145,6 +199,7 @@ export const translations = {
         mailName: "Имя",
         mailPhone: "Телефон",
         mailEmail: "Email",
+        mailBudget: "Бюджет",
         mailService: "Услуга",
         mailMessage: "Сообщение",
       },
@@ -222,11 +277,13 @@ export const translations = {
       portfolioLink: "Портфолиоро бинед",
       overlay: "Назарияи креативӣ\nба ҳар як\nлоиҳа",
       members: {
-        farrukh: "Фаррух\nоператор",
-        devashtich: "Деваштич\nоператор монтажер",
-        deniz: "Дениз\nгаффер",
-        ruslan: "Руслан\nфотограф",
-        yasmin: "Ясмин\nмонтажер",
+        ruslanDirector: "Руслан\nДиректор",
+        farrukh: "Фаррух\nКонтент-мейкер",
+        devashtich: "Деваштич\nАрт Директор",
+        oba: "Дениз\nКонтент-мейкер",
+        deniz: "Дениз\nГаффер",
+        ruslan: "Руслан\nКонтент-мейкер",
+        yasmin: "Ясмин\nМонтажер",
       },
       memberAlt: "Аъзои даста",
       values: {
@@ -248,6 +305,57 @@ export const translations = {
         team: "касбӣ дар даста",
         experience: "сол таҷриба дар соҳа",
         clients: "мижозони қонеъ",
+      },
+      digital: {
+        eyebrow: "IT & DIGITAL SOLUTIONS",
+        title1: "ТАРТИБ МЕДИҲЕМ",
+        title2: "ҲАЛЛИ РАҚАМӢ БАРОИ РӮЗИ БИЗНЕСИ ШУМО",
+        description:
+          "Аз сайтҳо ва ботҳо то CRM ва автоматизатсия — асбобҳое месозем, ки равандҳоро осон ва фоидаро зиёд мекунанд.",
+        services: {
+          web: {
+            title: "Таҳияи веб",
+            description: "Сайтҳо ва интернет-мағозаҳои муосир ва адаптиви тайёр.",
+          },
+          telegram: {
+            title: "Telegram-ботҳо",
+            description: "Ботҳо барои фурӯш, дастгирӣ, фармоиш ва автоматизатсияи бизнес.",
+          },
+          qrMenu: {
+            title: "QR Menu",
+            description: "Менюи электронӣ бо QR-код, фармоиши онлайн ва идоракунии осон.",
+          },
+          crm: {
+            title: "CRM барои ширкатҳои сохтмонӣ",
+            description: "Идоракунии объектҳо, мизоҷон, вазифаҳо, шартномаҳо ва молия дар як система.",
+          },
+          mobile: {
+            title: "Барномаҳои мобилӣ",
+            description: "Таҳияи барномаҳо барои Android ва iOS бо ҳар дараҷаи мураккабӣ.",
+          },
+          support: {
+            title: "Дастгирӣ ва рушд",
+            description: "Дастгирии техникӣ, навсозӣ ва рушди лоиҳаҳои шумо.",
+          },
+        },
+        values: {
+          reliability: {
+            title: "Эътимоднокӣ",
+            description: "Ҳалли устувор ва мӯҳлати шаффоф",
+          },
+          speed: {
+            title: "Таҳияи зуд",
+            description: "Аз идея то оғоз дар муддати кӯтоҳ",
+          },
+          support: {
+            title: "Дастгирӣ 24/7",
+            description: "Пас аз оғоз ҳамеша дар тамос",
+          },
+          result: {
+            title: "Натиҷа",
+            description: "Афзоиши фурӯш ва самаранокии бизнес",
+          },
+        },
       },
     },
     smm: {
@@ -308,6 +416,7 @@ export const translations = {
         phonePh: "+992 119 01 0000",
         email: "Email",
         emailPh: "email@example.com",
+        budget: "Нусхаи буҷет",
         service: "Хизматрасонӣ *",
         servicePh: "Хизматрасониро интихоб кунед",
         message: "Паём",
@@ -322,6 +431,7 @@ export const translations = {
         mailName: "Ном",
         mailPhone: "Телефон",
         mailEmail: "Email",
+        mailBudget: "Буҷет",
         mailService: "Хизматрасонӣ",
         mailMessage: "Паём",
       },
@@ -398,11 +508,13 @@ export const translations = {
       portfolioLink: "View portfolio",
       overlay: "Creative\napproach to\nevery project",
       members: {
-        farrukh: "Farrukh\noperator",
-        devashtich: "Devasicht\noperator editor",
-        deniz: "Deniz\ngaffer",
-        ruslan: "Ruslan\nphotographer",
-        yasmin: "Yasmin\nvideo editor",
+        ruslanDirector: "Ruslan\nDirector",
+        farrukh: "Farrukh\nContent maker",
+        devashtich: "Devashtich\nArt director",
+        oba: "Deniz\nContent maker",
+        deniz: "Deniz\nGaffer",
+        ruslan: "Ruslan\nContent maker",
+        yasmin: "Yasmin\nVideo editor",
       },
       memberAlt: "Team member",
       values: {
@@ -424,6 +536,57 @@ export const translations = {
         team: "professionals on the team",
         experience: "years in the industry",
         clients: "satisfied clients",
+      },
+      digital: {
+        eyebrow: "IT & DIGITAL SOLUTIONS",
+        title1: "WE BUILD",
+        title2: "DIGITAL SOLUTIONS TO GROW YOUR BUSINESS",
+        description:
+          "From websites and bots to CRM and automation — we create tools that simplify processes and increase profit.",
+        services: {
+          web: {
+            title: "Web development",
+            description: "Modern, responsive websites and e-commerce stores built end to end.",
+          },
+          telegram: {
+            title: "Telegram bots",
+            description: "Bots for sales, support, orders, and business process automation.",
+          },
+          qrMenu: {
+            title: "QR Menu",
+            description: "Digital menus with QR codes, online ordering, and easy management.",
+          },
+          crm: {
+            title: "CRM for construction",
+            description: "Manage sites, clients, tasks, contracts, and finances in one system.",
+          },
+          mobile: {
+            title: "Mobile apps",
+            description: "Android and iOS apps of any complexity.",
+          },
+          support: {
+            title: "Support & growth",
+            description: "Technical support, updates, and ongoing development for your projects.",
+          },
+        },
+        values: {
+          reliability: {
+            title: "Reliability",
+            description: "Stable solutions and transparent timelines",
+          },
+          speed: {
+            title: "Fast development",
+            description: "From idea to launch in the shortest time",
+          },
+          support: {
+            title: "24/7 support",
+            description: "Always available after project launch",
+          },
+          result: {
+            title: "Results",
+            description: "Growth in sales and business efficiency",
+          },
+        },
       },
     },
     smm: {
@@ -484,6 +647,7 @@ export const translations = {
         phonePh: "+992 119 01 0000",
         email: "Email",
         emailPh: "email@example.com",
+        budget: "Budget option",
         service: "Service *",
         servicePh: "Select a service",
         message: "Message",
@@ -498,6 +662,7 @@ export const translations = {
         mailName: "Name",
         mailPhone: "Phone",
         mailEmail: "Email",
+        mailBudget: "Budget",
         mailService: "Service",
         mailMessage: "Message",
       },

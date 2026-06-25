@@ -58,7 +58,7 @@ export default function Partners() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="mb-5 text-center text-xs tracking-[0.35em] text-beige-muted uppercase sm:mb-6"
+          className="mb-5 text-center text-xs font-bold tracking-[0.35em] text-beige-muted uppercase sm:mb-6"
         >
           {t("partners.heading")}
         </motion.p>

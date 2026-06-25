@@ -49,23 +49,23 @@ function Find-Surati([string]$pattern) {
 
 # High-res exports (never upscale — only scale down)
 $jobs = @(
-  @{ src = (Find-Surati "surati 4.png");  dest = "portrait-creative.jpg"; maxW = 2000; jpg = $true }
-  @{ src = (Find-Surati "1 (2).png");     dest = "team-1.jpg";           maxW = 2000; jpg = $true }
-  @{ src = (Find-Surati "surati 2.png");  dest = "team-2.jpg";           maxW = 2000; jpg = $true }
-  @{ src = (Find-Surati "3 (1).png");     dest = "team-3.jpg";           maxW = 2000; jpg = $true }
-  @{ src = (Find-Surati "surati 6.png");  dest = "team-4.jpg";           maxW = 2000; jpg = $true }
-  @{ src = (Find-Surati "surati 5.png");  dest = "team-5.jpg";           maxW = 2000; jpg = $true }
+  @{ src = (Find-Surati "surati 4.png");  dest = "portrait-creative.jpg"; maxW = 2400; jpg = $true }
+  @{ src = (Find-Surati "1 (2).png");     dest = "team-1.jpg";           maxW = 2400; jpg = $true }
+  @{ src = (Find-Surati "surati 2.png");  dest = "team-2.jpg";           maxW = 2400; jpg = $true }
+  @{ src = (Find-Surati "3 (1).png");     dest = "team-3.jpg";           maxW = 2400; jpg = $true }
+  @{ src = (Find-Surati "surati 6.png");  dest = "team-4.jpg";           maxW = 2400; jpg = $true }
+  @{ src = (Find-Surati "surati 5.png");  dest = "team-5.jpg";           maxW = 2400; jpg = $true }
 )
 
 $handshakeSrc = @(
-  (Find-Surati "handshake-banner.png"),
   (Find-Surati "handshake-ready.jpg"),
   (Find-Surati "*отов*.jpg"),
-  (Find-Surati "DSCF4708*.jpg")
+  (Find-Surati "DSCF4708*.jpg"),
+  (Find-Surati "handshake-banner.png")
 ) | Where-Object { $_ } | Select-Object -First 1
 
 if ($handshakeSrc) {
-  $jobs += @{ src = $handshakeSrc; dest = "handshake.jpg"; maxW = 2000; jpg = $true }
+  $jobs += @{ src = $handshakeSrc; dest = "handshake.jpg"; maxW = 2560; jpg = $true }
 }
 
 foreach ($j in $jobs) {
@@ -78,16 +78,17 @@ foreach ($j in $jobs) {
   $i.Dispose()
 }
 
-# Group photo — copy without re-encode
+# Group photo — high-res export
 $groupSrc = Find-Surati "surati 7.png"
-$groupDest = Join-Path $outDir "team-group.png"
-Copy-Item -LiteralPath $groupSrc -Destination $groupDest -Force
-$g = [System.Drawing.Image]::FromFile($groupDest)
-Write-Output "OK team-group.png <- $(Split-Path $groupSrc -Leaf) | $($g.Width)x$($g.Height) | $([math]::Round((Get-Item $groupDest).Length/1KB))KB"
-$g.Dispose()
+if ($groupSrc) {
+  Export-Image $groupSrc (Join-Path $outDir "team-group.png") 1600 $false
+  $out = Get-Item (Join-Path $outDir "team-group.png")
+  $g = [System.Drawing.Image]::FromFile($out.FullName)
+  Write-Output "OK team-group.png <- $(Split-Path $groupSrc -Leaf) | $($g.Width)x$($g.Height) | $([math]::Round($out.Length/1KB))KB"
+  $g.Dispose()
+}
 
 Remove-Item (Join-Path $outDir "team-1.png") -ErrorAction SilentlyContinue
 Remove-Item (Join-Path $outDir "team-3.png") -ErrorAction SilentlyContinue
-Remove-Item (Join-Path $outDir "handshake.jpg") -ErrorAction SilentlyContinue
 Remove-Item (Join-Path $outDir "portrait-creative.png") -ErrorAction SilentlyContinue
 Remove-Item (Join-Path $outDir "yas2.jpg") -ErrorAction SilentlyContinue

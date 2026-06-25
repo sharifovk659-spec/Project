@@ -87,8 +87,8 @@ export default function PrivacyPage() {
           </Link>
 
           <div className="mx-auto max-w-4xl">
-            <p className="mb-3 text-xs tracking-[0.35em] text-gold uppercase">Правовая информация</p>
-            <h1 className="font-display text-3xl font-medium tracking-wide text-gradient-gold sm:text-4xl lg:text-5xl">
+            <p className="mb-3 text-xs font-bold tracking-[0.35em] text-gold uppercase">Правовая информация</p>
+            <h1 className="font-display text-3xl font-bold tracking-wide text-gradient-gold sm:text-4xl lg:text-5xl">
               Политика конфиденциальности
             </h1>
             <div className="gold-line mt-6 max-w-xs" />
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-gold/25 bg-gold/10 font-display text-sm font-medium text-gold">
                       {index + 1}
                     </span>
-                    <h2 className="pt-1 font-display text-xl font-medium text-beige sm:text-2xl">
+                    <h2 className="pt-1 font-display text-xl font-bold text-beige sm:text-2xl">
                       {section.title}
                     </h2>
                   </div>
@@ -147,7 +147,7 @@ export default function PrivacyPage() {
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-gold/25 bg-gold/10 font-display text-sm font-medium text-gold">
                     7
                   </span>
-                  <h2 className="pt-1 font-display text-xl font-medium text-beige sm:text-2xl">
+                  <h2 className="pt-1 font-display text-xl font-bold text-beige sm:text-2xl">
                     Контактная информация
                   </h2>
                 </div>
@@ -185,7 +185,7 @@ export default function PrivacyPage() {
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-gold/25 bg-gold/10 font-display text-sm font-medium text-gold">
                     8
                   </span>
-                  <h2 className="pt-1 font-display text-xl font-medium text-beige sm:text-2xl">
+                  <h2 className="pt-1 font-display text-xl font-bold text-beige sm:text-2xl">
                     Изменения политики
                   </h2>
                 </div>
