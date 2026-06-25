@@ -15,6 +15,9 @@ const SERVICES = [
   "contact.services.video",
   "contact.services.photo",
   "contact.services.academy",
+  "contact.services.package500",
+  "contact.services.package700",
+  "contact.services.package1000",
   "contact.services.other",
 ] as const;
 
