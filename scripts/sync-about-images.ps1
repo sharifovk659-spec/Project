@@ -50,9 +50,9 @@ function Find-Surati([string]$pattern) {
 # High-res exports (never upscale — only scale down)
 $jobs = @(
   @{ src = (Find-Surati "surati 4.png");  dest = "portrait-creative.jpg"; maxW = 2000; jpg = $true }
-  @{ src = (Find-Surati "surati 1.png");  dest = "team-1.jpg";           maxW = 2000; jpg = $true; upscale = $true }
+  @{ src = (Find-Surati "1 (2).png");     dest = "team-1.jpg";           maxW = 2000; jpg = $true }
   @{ src = (Find-Surati "surati 2.png");  dest = "team-2.jpg";           maxW = 2000; jpg = $true }
-  @{ src = (Find-Surati "surati 3*.png"); dest = "team-3.jpg";           maxW = 2000; jpg = $true; upscale = $true }
+  @{ src = (Find-Surati "3 (1).png");     dest = "team-3.jpg";           maxW = 2000; jpg = $true }
   @{ src = (Find-Surati "surati 6.png");  dest = "team-4.jpg";           maxW = 2000; jpg = $true }
   @{ src = (Find-Surati "surati 5.png");  dest = "team-5.jpg";           maxW = 2000; jpg = $true }
 )
