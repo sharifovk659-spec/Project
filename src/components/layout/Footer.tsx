@@ -2,20 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram, FaTelegram, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import Container from "@/components/ui/Container";
+import ContactInfo from "@/components/ui/ContactInfo";
 import Logo from "@/components/ui/Logo";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { NAV_LINKS } from "@/lib/constants";
-import { FOOTER_SERVICES, FOOTER_CONTACTS, SOCIAL_LINKS } from "@/lib/data/footer";
+import { FOOTER_SERVICES } from "@/lib/data/footer";
 import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
-
-const socialIcons = {
-  instagram: FaInstagram,
-  telegram: FaTelegram,
-  whatsapp: FaWhatsapp,
-  youtube: FaYoutube,
-} as const;
 
 export default function Footer() {
   const { t } = useLocale();
@@ -70,42 +63,10 @@ export default function Footer() {
           </div>
 
           <div className="col-span-2 min-w-0 lg:col-span-3">
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-gold uppercase sm:mb-3 sm:text-xs sm:tracking-[0.25em]">
+            <p className="mb-3 text-[10px] tracking-[0.2em] text-gold uppercase sm:mb-4 sm:text-xs sm:tracking-[0.25em]">
               {t("footer.contacts")}
             </p>
-            <ul className="space-y-1.5 text-xs text-beige-muted sm:space-y-2 sm:text-sm">
-              <li>
-                <a
-                  href={`tel:${FOOTER_CONTACTS.phone.replace(/\s/g, "")}`}
-                  className="transition-colors hover:text-beige"
-                >
-                  {FOOTER_CONTACTS.phone}
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${FOOTER_CONTACTS.email}`} className="transition-colors hover:text-beige">
-                  {FOOTER_CONTACTS.email}
-                </a>
-              </li>
-              <li>{t(FOOTER_CONTACTS.addressKey)}</li>
-            </ul>
-            <div className="mt-3 flex gap-3 sm:mt-4">
-              {SOCIAL_LINKS.map((social) => {
-                const Icon = socialIcons[social.icon];
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="text-sm text-beige-muted transition-colors hover:text-gold sm:text-base"
-                  >
-                    <Icon />
-                  </a>
-                );
-              })}
-            </div>
+            <ContactInfo className="space-y-4" />
           </div>
 
           <div className="hidden min-w-0 lg:col-span-2 lg:block">

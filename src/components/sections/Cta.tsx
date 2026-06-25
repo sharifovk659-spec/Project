@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
-import ContactForm, { ContactInfo } from "@/components/sections/ContactForm";
+import ContactForm from "@/components/sections/ContactForm";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { fadeUp } from "@/lib/animations";
 
@@ -56,22 +56,14 @@ export default function Cta() {
               <motion.p
                 custom={2}
                 variants={fadeUp}
-                className="mt-4 max-w-md text-sm leading-relaxed text-beige-muted sm:text-base"
+                className="mt-4 max-w-md text-sm leading-relaxed text-beige-muted sm:text-base lg:max-w-lg"
               >
                 {t("contact.description")}
               </motion.p>
-
-              <motion.div custom={3} variants={fadeUp} className="mt-6 hidden lg:block">
-                <ContactInfo />
-              </motion.div>
             </div>
 
-            <motion.div custom={4} variants={fadeUp}>
+            <motion.div custom={3} variants={fadeUp}>
               <ContactForm />
-            </motion.div>
-
-            <motion.div custom={5} variants={fadeUp} className="lg:hidden">
-              <ContactInfo />
             </motion.div>
           </div>
 

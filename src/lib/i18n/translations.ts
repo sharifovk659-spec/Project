@@ -37,9 +37,20 @@ export const translations = {
       teamGroupAlt: "Команда Eterna Production",
       teamHeading: "Наша команда",
       handshakeAlt: "Рукопожатие — партнёрство и доверие",
-      handshakeOverlay: "Партнёрство\nи доверие\nв каждом проекте",
+      handshakeBanner: {
+        title: "Готовы к новому проекту?",
+        subtitle: "Оставьте заявку и мы свяжемся с вами в ближайшее время",
+        cta: "Оставить заявку",
+      },
       portfolioLink: "Смотреть портфолио",
       overlay: "Креативный\nподход к\nкаждому проекту",
+      members: {
+        farrukh: "Фаррух\nоператор",
+        devashtich: "Деваштич\nоператор монтажер",
+        deniz: "Дениз\nгаффер",
+        ruslan: "Руслан\nфотограф",
+        yasmin: "Ясмин\nмонтажер",
+      },
       memberAlt: "Член команды",
       values: {
         professionalism: {
@@ -203,9 +214,20 @@ export const translations = {
       teamGroupAlt: "Дастаи Eterna Production",
       teamHeading: "Дастаи мо",
       handshakeAlt: "Даст додан — шарикият ва эътимод",
-      handshakeOverlay: "Шарикият\nва эътимод\nдар ҳар лоиҳа",
+      handshakeBanner: {
+        title: "Ба лоиҳаи нав омода?",
+        subtitle: "Дархост гузоред — мо ба зудӣ бо шумо тамос мегирем",
+        cta: "Дархост гузоред",
+      },
       portfolioLink: "Портфолиоро бинед",
       overlay: "Назарияи креативӣ\nба ҳар як\nлоиҳа",
+      members: {
+        farrukh: "Фаррух\nоператор",
+        devashtich: "Деваштич\nоператор монтажер",
+        deniz: "Дениз\nгаффер",
+        ruslan: "Руслан\nфотограф",
+        yasmin: "Ясмин\nмонтажер",
+      },
       memberAlt: "Аъзои даста",
       values: {
         professionalism: {
@@ -368,9 +390,20 @@ export const translations = {
       teamGroupAlt: "Eterna Production team",
       teamHeading: "Our team",
       handshakeAlt: "Handshake — partnership and trust",
-      handshakeOverlay: "Partnership\nand trust\nin every project",
+      handshakeBanner: {
+        title: "Ready for a new project?",
+        subtitle: "Leave a request and we will contact you shortly",
+        cta: "Submit request",
+      },
       portfolioLink: "View portfolio",
       overlay: "Creative\napproach to\nevery project",
+      members: {
+        farrukh: "Farrukh\noperator",
+        devashtich: "Devasicht\noperator editor",
+        deniz: "Deniz\ngaffer",
+        ruslan: "Ruslan\nphotographer",
+        yasmin: "Yasmin\nvideo editor",
+      },
       memberAlt: "Team member",
       values: {
         professionalism: {

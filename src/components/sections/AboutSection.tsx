@@ -19,11 +19,11 @@ import { cn } from "@/lib/utils";
 
 const TEAM_GALLERY_SOURCES = [
   { src: ABOUT_IMAGES.team[4], overlay: true },
-  { src: ABOUT_IMAGES.team[0] },
-  { src: ABOUT_IMAGES.team[1] },
-  { src: ABOUT_IMAGES.team[2] },
-  { src: ABOUT_IMAGES.team[3] },
-  { src: ABOUT_IMAGES.portraitCreative },
+  { src: ABOUT_IMAGES.team[0], overlayKey: "about.members.farrukh" },
+  { src: ABOUT_IMAGES.team[1], overlayKey: "about.members.devashtich" },
+  { src: ABOUT_IMAGES.team[2], overlayKey: "about.members.deniz" },
+  { src: ABOUT_IMAGES.team[3], overlayKey: "about.members.ruslan" },
+  { src: ABOUT_IMAGES.portraitCreative, overlayKey: "about.members.yasmin" },
 ] as const;
 
 function AboutImage({
@@ -90,50 +90,16 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <Section id="about" className="relative overflow-hidden border-t border-gold/10 py-12 sm:py-16">
+    <Section id="about" className="relative overflow-x-hidden border-t border-gold/10 py-12 sm:py-16">
       <Container>
-        {/* Row 1: text + group photo */}
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-14">
+        {/* Row 1: editorial text over image on desktop */}
+        <div className="relative grid items-center gap-8 lg:block lg:overflow-visible lg:pt-2">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
-            <motion.p custom={0} variants={fadeUp} className="mb-3 text-xs tracking-[0.35em] text-gold uppercase">
-              {t("about.eyebrow")}
-            </motion.p>
-            <motion.h2
-              custom={1}
-              variants={fadeUp}
-              className="font-display text-2xl leading-tight font-medium tracking-wide uppercase sm:text-3xl lg:text-[2rem] lg:leading-[1.15]"
-            >
-              <span className="text-gradient-gold">
-                {t("about.title1")}
-                <br />
-                {t("about.title2")}
-              </span>
-            </motion.h2>
-            <motion.p
-              custom={2}
-              variants={fadeUp}
-              className="mt-4 max-w-lg text-sm leading-relaxed text-beige-muted sm:text-[15px]"
-            >
-              {t("about.description")}
-            </motion.p>
-            <motion.div custom={3} variants={fadeUp} className="mt-6">
-              <Button href="#contact" variant="outline" className="px-5 py-2.5 text-[11px] sm:text-xs">
-                {t("about.cta")}
-                <HiOutlineArrowRight className="text-base" />
-              </Button>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 72 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6 }}
-            className="min-w-0"
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="relative z-0 order-2 min-w-0 lg:order-none lg:ml-[40%] lg:-translate-x-[3px] lg:-translate-y-5 xl:ml-[42%] xl:-translate-y-6"
           >
             <AboutImage
               src={ABOUT_IMAGES.teamGroup}
@@ -144,6 +110,28 @@ export default function AboutSection() {
               imageSizes={IMAGE_SIZES.teamGroup}
             />
           </motion.div>
+
+          <div className="relative z-10 order-1 lg:absolute lg:inset-0 lg:order-none lg:flex lg:items-center lg:py-2">
+            <div className="lg:max-w-[50%] xl:max-w-[46%] lg:bg-gradient-to-r lg:from-background lg:via-background/85 lg:to-transparent lg:py-6 lg:pr-8 xl:py-8">
+              <p className="mb-3 text-xs tracking-[0.35em] text-gold uppercase">{t("about.eyebrow")}</p>
+              <h2 className="font-display text-2xl leading-tight font-medium tracking-wide uppercase sm:text-3xl lg:text-[2rem] lg:leading-[1.15]">
+                <span className="text-gradient-gold">
+                  {t("about.title1")}
+                  <br />
+                  {t("about.title2")}
+                </span>
+              </h2>
+              <p className="mt-4 max-w-lg text-sm leading-relaxed text-beige-muted sm:text-[15px] lg:max-w-none">
+                {t("about.description")}
+              </p>
+              <div className="mt-6">
+                <Button href="#contact" variant="outline" className="px-5 py-2.5 text-[11px] sm:text-xs">
+                  {t("about.cta")}
+                  <HiOutlineArrowRight className="text-base" />
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Row 2: values — 3 columns */}
@@ -232,7 +220,13 @@ export default function AboutSection() {
                 <AboutImage
                   src={member.src}
                   alt={t("about.memberAlt")}
-                  overlay={"overlay" in member && member.overlay ? t("about.overlay") : undefined}
+                  overlay={
+                    "overlayKey" in member
+                      ? t(member.overlayKey)
+                      : "overlay" in member && member.overlay
+                        ? t("about.overlay")
+                        : undefined
+                  }
                   aspectClass="aspect-[3/4]"
                   objectPosition="center top"
                   priority={index < 2}
@@ -242,23 +236,40 @@ export default function AboutSection() {
           </Swiper>
         </motion.div>
 
-        {/* Handshake — bottom of Our Team, not in gallery carousel */}
+        {/* Handshake CTA banner */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
-          className="mt-8 w-full sm:mt-10 sm:flex sm:justify-start"
+          className="mt-12 w-full sm:mt-14 lg:mt-16"
         >
-          <AboutImage
-            src={ABOUT_IMAGES.handshake}
-            alt={t("about.handshakeAlt")}
-            overlay={t("about.handshakeOverlay")}
-            aspectClass="aspect-[3/4]"
-            objectPosition="center"
-            imageSizes="(max-width: 639px) 100vw, 480px"
-            className="w-full sm:max-w-[400px] lg:max-w-[480px]"
-          />
+          <div className="relative min-h-[280px] w-full overflow-hidden rounded-xl border border-gold/15 bg-dark sm:min-h-[300px] lg:aspect-[3/1] lg:min-h-0">
+            <Image
+              src={ABOUT_IMAGES.handshake}
+              alt={t("about.handshakeAlt")}
+              fill
+              loading="lazy"
+              sizes="(max-width: 1024px) 100vw, 640px"
+              quality={IMAGE_QUALITY}
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 flex flex-col items-center justify-start gap-2 px-4 pt-5 pb-6 text-center sm:gap-2.5 sm:px-6 sm:pt-7 md:pt-9 lg:pt-10">
+              <h3 className="font-display text-xl font-medium uppercase leading-tight tracking-wide text-[#d9b078] sm:text-2xl md:text-3xl lg:text-[2rem]">
+                {t("about.handshakeBanner.title")}
+              </h3>
+              <p className="max-w-md text-[11px] leading-relaxed text-white/95 sm:max-w-xl sm:text-sm">
+                {t("about.handshakeBanner.subtitle")}
+              </p>
+              <a
+                href="#contact"
+                className="mt-1 inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-sm bg-gradient-to-b from-[#f0a030] to-[#d97a18] px-7 py-2.5 text-[10px] font-bold tracking-[0.14em] text-black uppercase transition-opacity hover:opacity-90"
+              >
+                {t("about.handshakeBanner.cta")}
+              </a>
+            </div>
+          </div>
         </motion.div>
 
         {/* Row 5: stats */}
