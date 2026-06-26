@@ -17,9 +17,11 @@ const SERVICES = [
 ] as const;
 
 const BUDGET_OPTIONS = [
+  "contact.services.package300",
   "contact.services.package500",
   "contact.services.package700",
   "contact.services.package1000",
+  "contact.services.other",
 ] as const;
 
 const inputClass =
@@ -29,7 +31,6 @@ export default function ContactForm() {
   const { t } = useLocale();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [budget, setBudget] = useState("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,7 +63,6 @@ export default function ContactForm() {
 
     setSubmitted(true);
     setLoading(false);
-    setBudget("");
     form.reset();
   };
 
@@ -159,30 +159,19 @@ export default function ContactForm() {
           viewport={{ once: true }}
           className="col-span-2"
         >
-          <p className="mb-2 text-[10px] tracking-[0.2em] text-gold uppercase">{t("contact.form.budget")}</p>
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
-            {BUDGET_OPTIONS.map((key) => {
-              const label = t(key);
-              const selected = budget === label;
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => setBudget(selected ? "" : label)}
-                  className={cn(
-                    "rounded-lg border py-2.5 text-center text-xs tracking-wide transition-all sm:py-3 sm:text-sm",
-                    selected
-                      ? "border-gold/50 bg-gold/10 text-gold"
-                      : "border-gold/20 bg-background/40 text-beige-muted hover:border-gold/35 hover:text-beige",
-                  )}
-                  aria-pressed={selected}
-                >
-                  {label}
-                </button>
-              );
-            })}
-          </div>
-          <input type="hidden" name="budget" value={budget} />
+          <label htmlFor="budget" className="mb-2 block text-[10px] tracking-[0.2em] text-gold uppercase">
+            {t("contact.form.budget")}
+          </label>
+          <select id="budget" name="budget" defaultValue="" className={cn(inputClass, "appearance-none")}>
+            <option value="" disabled>
+              {t("contact.form.budgetPh")}
+            </option>
+            {BUDGET_OPTIONS.map((key) => (
+              <option key={key} value={t(key)} className="bg-dark text-beige">
+                {t(key)}
+              </option>
+            ))}
+          </select>
         </motion.div>
       </div>
 
