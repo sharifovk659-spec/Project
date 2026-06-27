@@ -8,39 +8,19 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { PARTNERS } from "@/lib/data/partners";
 import { fadeUp } from "@/lib/animations";
 import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
-import { cn } from "@/lib/utils";
 
-function PartnerLogo({
-  name,
-  file,
-  scale = 1,
-  maxWidth,
-}: {
-  name: string;
-  file: string;
-  scale?: number;
-  maxWidth?: number;
-}) {
+function PartnerLogo({ name, file }: { name: string; file: string }) {
   return (
-    <div className="flex h-14 items-center px-2 sm:h-16 sm:px-3 lg:h-[72px]">
+    <div className="flex shrink-0 items-center justify-center px-1 sm:px-1.5">
       <Image
         src={`/images/partners/${file}`}
         alt={name}
-        width={280}
-        height={72}
+        width={512}
+        height={640}
         loading="lazy"
         quality={IMAGE_QUALITY}
         sizes={IMAGE_SIZES.partner}
-        style={{
-          height: `calc(var(--partner-logo-h) * ${scale})`,
-          width: "auto",
-          maxWidth: maxWidth ? `${maxWidth}px` : undefined,
-        }}
-        className={cn(
-          "w-auto object-contain opacity-85 transition-opacity duration-300 hover:opacity-100",
-          !maxWidth && "max-w-[120px] sm:max-w-[140px] lg:max-w-[150px]",
-          "[--partner-logo-h:56px] sm:[--partner-logo-h:64px] lg:[--partner-logo-h:72px]"
-        )}
+        className="h-[92px] w-auto rounded-md object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 sm:h-[104px] lg:h-[112px]"
       />
     </div>
   );
@@ -51,29 +31,22 @@ export default function Partners() {
   const marqueeItems = [...PARTNERS, ...PARTNERS];
 
   return (
-    <Section className="border-b border-gold/10 py-8 sm:py-10">
+    <Section className="border-b border-gold/10 py-10 sm:py-12">
       <Container>
         <motion.p
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="mb-5 text-center text-xs font-bold tracking-[0.35em] text-beige-muted uppercase sm:mb-6"
+          className="mb-7 text-center text-sm font-bold tracking-[0.28em] text-beige/85 uppercase sm:mb-8 sm:text-base lg:text-lg"
         >
           {t("partners.heading")}
         </motion.p>
 
         <div className="partners-marquee overflow-hidden">
-          <div className="partners-marquee-track flex w-max items-center gap-8 sm:gap-10">
+          <div className="partners-marquee-track flex w-max items-center gap-6 sm:gap-8">
             {marqueeItems.map((partner, i) => (
-              <div key={`${partner.file}-${i}`} className="flex shrink-0 items-center justify-center">
-                <PartnerLogo
-                  name={partner.name}
-                  file={partner.file}
-                  scale={partner.scale}
-                  maxWidth={partner.maxWidth}
-                />
-              </div>
+              <PartnerLogo key={`${partner.file}-${i}`} name={partner.name} file={partner.file} />
             ))}
           </div>
         </div>

@@ -44,3 +44,10 @@ export const ABOUT_IMAGES = {
     "/images/about/team-5.jpg",
   ],
 } as const;
+
+const GALLERY_COUNT = 25;
+
+export const TEAM_GALLERY_IMAGES = Array.from(
+  { length: GALLERY_COUNT },
+  (_, i) => `/images/about/team-gallery/gallery-${String(i + 1).padStart(2, "0")}.jpg`,
+);

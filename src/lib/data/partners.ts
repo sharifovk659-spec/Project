@@ -1,31 +1,20 @@
 export interface Partner {
   name: string;
   file: string;
-  /** Boost for logos with extra padding inside the PNG */
-  scale?: number;
-  /** Wider cap for logos that stay small at default max-width */
-  maxWidth?: number;
 }
 
 export const PARTNERS: Partner[] = [
-  { name: "Coca-Cola", file: "coca-cola.png" },
-  { name: "Gazprom", file: "gazprom.png" },
-  { name: "EuroMed", file: "euromed.png", scale: 2.05, maxWidth: 200 },
-  { name: "Prime Technology", file: "prime-technology.png", scale: 1.25 },
-  { name: "Kimchi", file: "kimchi.png" },
-  { name: "GS Clinic", file: "gs-clinic.png" },
-  { name: "x-fit Premium", file: "xfit.png" },
-  { name: "Nutri Food", file: "nutri-food.png", scale: 2, maxWidth: 195 },
-  { name: "Nishman", file: "nishman.png", scale: 1.15 },
-  { name: "Asar Group", file: "asar-group.png", scale: 1.4 },
-  { name: "The Garden", file: "the-garden.png", scale: 1.95, maxWidth: 190 },
-  { name: "Pizzeria Alla Torre", file: "pizzeria-alla-torre.png" },
-  { name: "Community", file: "community.png" },
-  { name: "MCK Lounge", file: "mck-lounge.png" },
-  { name: "Мастер.ОК+", file: "master-ok.png", scale: 1.2 },
-  { name: "Пайкар", file: "paykar.png" },
-  { name: "BIMA Insurance", file: "bima-insurance.png", scale: 1.35 },
-  { name: "Душанбинка", file: "dushanbinka.png", scale: 1.25 },
-  { name: "Amani", file: "amani.png", scale: 1.2 },
+  { name: "Amani", file: "amani.png" },
+  { name: "Asar Group", file: "asar.png" },
+  { name: "BIMA Insurance", file: "bima-insurance.png" },
   { name: "BIMA.LIFE", file: "bima-life.png" },
+  { name: "Coca-Cola", file: "coca-cola.png" },
+  { name: "Community", file: "community.png" },
+  { name: "Dadabaev Group", file: "dadabaev.png" },
+  { name: "Душанбинка", file: "dushanbinka.png" },
+  { name: "The Garden", file: "garden.png" },
+  { name: "Jeddi", file: "jeddi.png" },
+  { name: "Пайкар", file: "paykar.png" },
+  { name: "Prime Technology", file: "prime.png" },
+  { name: "x-fit Premium", file: "x-fit.png" },
 ];

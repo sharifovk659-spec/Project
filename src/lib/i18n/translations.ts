@@ -36,6 +36,10 @@ export const translations = {
       cta: "Подробнее о нас",
       teamGroupAlt: "Команда Eterna Production",
       teamHeading: "Наша команда",
+      teamGalleryAlt: "Фото команды",
+      teamGalleryOpen: "Открыть фото",
+      teamGalleryPrev: "Предыдущее фото",
+      teamGalleryNext: "Следующее фото",
       handshakeAlt: "Рукопожатие — партнёрство и доверие",
       handshakeBanner: {
         title: "Готовы к новому проекту?",
@@ -270,6 +274,10 @@ export const translations = {
       cta: "Муфассалтар дар бораи мо",
       teamGroupAlt: "Дастаи Eterna Production",
       teamHeading: "Дастаи мо",
+      teamGalleryAlt: "Суратҳои даста",
+      teamGalleryOpen: "Кушодани сурат",
+      teamGalleryPrev: "Суратҳои қаблӣ",
+      teamGalleryNext: "Суратҳои навбатӣ",
       handshakeAlt: "Даст додан — шарикият ва эътимод",
       handshakeBanner: {
         title: "Ба лоиҳаи нав омода?",
@@ -503,6 +511,10 @@ export const translations = {
       cta: "Learn more about us",
       teamGroupAlt: "Eterna Production team",
       teamHeading: "Our team",
+      teamGalleryAlt: "Team photo",
+      teamGalleryOpen: "Open photo",
+      teamGalleryPrev: "Previous photo",
+      teamGalleryNext: "Next photo",
       handshakeAlt: "Handshake — partnership and trust",
       handshakeBanner: {
         title: "Ready for a new project?",

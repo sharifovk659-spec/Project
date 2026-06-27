@@ -14,9 +14,10 @@ export const IMAGE_SIZES = {
   teamPortrait:
     "(max-width: 639px) 100vw, (max-width: 767px) 50vw, (max-width: 1023px) 34vw, 400px",
   teamPortraitHigh: "(max-width: 1023px) 100vw, 400px",
+  teamGalleryGrid: "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 420px",
   handshakeBanner: "(max-width: 1024px) 100vw, 1280px",
   footer: "(max-width: 1280px) 200px, 220px",
-  partner: "(max-width: 640px) 140px, (max-width: 1024px) 160px, 180px",
+  partner: "(max-width: 640px) 100px, (max-width: 1024px) 110px, 120px",
 } as const;
 
 /** Source files smaller than ~500px — serve original bytes, cap mobile display width. */
