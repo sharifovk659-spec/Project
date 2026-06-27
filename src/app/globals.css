@@ -193,7 +193,12 @@ body {
   bottom: 0 !important;
 }
 
-.team-gallery-swiper .swiper-pagination-bullet {
+.team-photos-swiper .swiper-pagination {
+  bottom: 0 !important;
+}
+
+.team-gallery-swiper .swiper-pagination-bullet,
+.team-photos-swiper .swiper-pagination-bullet {
   width: 6px;
   height: 6px;
   background: var(--gold);
@@ -201,7 +206,20 @@ body {
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.team-gallery-swiper .swiper-pagination-bullet-active {
+.team-gallery-swiper .swiper-pagination-bullet-active,
+.team-photos-swiper .swiper-pagination-bullet-active {
   opacity: 1;
   transform: scale(1.15);
+}
+
+.team-photos-swiper.swiper-grab .swiper-slide {
+  cursor: grab;
+}
+
+.team-photos-swiper.swiper-grabbing .swiper-slide {
+  cursor: grabbing;
+}
+
+.team-photos-swiper .swiper-slide {
+  height: auto;
 }

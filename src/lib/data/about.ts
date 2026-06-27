@@ -45,9 +45,14 @@ export const ABOUT_IMAGES = {
   ],
 } as const;
 
-const GALLERY_COUNT = 25;
-
+/** Sync order: 8906, 8904, 8910 first, then remaining photos from `3 галеря`. */
 export const TEAM_GALLERY_IMAGES = Array.from(
-  { length: GALLERY_COUNT },
+  { length: 22 },
   (_, i) => `/images/about/team-gallery/gallery-${String(i + 1).padStart(2, "0")}.jpg`,
-);
+) as const;
+
+export const TEAM_GALLERY_PRIORITY = [
+  "5325537861547268906.jpg",
+  "5325537861547268904.jpg",
+  "5325537861547268910.jpg",
+] as const;
