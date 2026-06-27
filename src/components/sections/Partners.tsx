@@ -20,7 +20,7 @@ function PartnerLogo({ name, file }: { name: string; file: string }) {
         loading="lazy"
         quality={IMAGE_QUALITY}
         sizes={IMAGE_SIZES.partner}
-        className="h-[92px] w-auto rounded-md object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 sm:h-[104px] lg:h-[112px]"
+        className="h-[117px] w-auto rounded-md object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 sm:h-[129px] lg:h-[137px]"
       />
     </div>
   );
