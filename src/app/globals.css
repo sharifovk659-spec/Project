@@ -154,11 +154,11 @@ body {
 
 .partners-marquee {
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
 }
 
 .partners-marquee-track {
-  animation: marquee 52s linear infinite;
+  animation: marquee 42s linear infinite;
   will-change: transform;
 }
 
@@ -224,27 +224,135 @@ body {
   height: auto;
 }
 
-.partners-swiper .swiper-pagination {
-  bottom: 0 !important;
+.floating-contact-dock {
+  position: fixed;
+  right: 14px;
+  bottom: 18px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.partners-swiper .swiper-pagination-bullet {
-  width: 6px;
-  height: 6px;
-  background: var(--gold);
-  opacity: 0.35;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+.floating-fab {
+  position: relative;
+  display: block;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  isolation: isolate;
+  transition: transform 0.25s ease;
 }
 
-.partners-swiper .swiper-pagination-bullet-active {
-  opacity: 1;
-  transform: scale(1.15);
+.floating-fab:hover {
+  transform: translateY(-2px) scale(1.04);
 }
 
-.partners-swiper.swiper-grab .swiper-slide {
-  cursor: grab;
+.floating-fab__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
 }
 
-.partners-swiper.swiper-grabbing .swiper-slide {
-  cursor: grabbing;
+.floating-fab__ring::before {
+  content: "";
+  position: absolute;
+  inset: -120%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 250deg,
+    var(--fab-trail) 285deg,
+    var(--fab-trail-bright) 305deg,
+    var(--fab-trail) 325deg,
+    transparent 360deg
+  );
+  animation: floating-fab-border 2.8s linear infinite;
+  animation-delay: var(--fab-delay, 0s);
+}
+
+.floating-fab__panel {
+  position: absolute;
+  inset: 2px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #070707;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 0.55px, transparent 0.55px);
+  background-size: 7px 7px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.floating-fab__shimmer {
+  position: absolute;
+  inset: -60%;
+  background: radial-gradient(circle, var(--fab-glow) 0%, transparent 58%);
+  animation: floating-fab-glow 4.6s ease-in-out infinite;
+  animation-delay: var(--fab-delay, 0s);
+  pointer-events: none;
+}
+
+.floating-fab__icon {
+  position: relative;
+  z-index: 1;
+  font-size: 1.35rem;
+  color: #fff;
+}
+
+.floating-fab--gold {
+  --fab-trail: #c89b5c;
+  --fab-trail-bright: #ffe08a;
+  --fab-glow: rgba(200, 155, 92, 0.34);
+}
+
+.floating-fab--beige {
+  --fab-trail: #d4a96a;
+  --fab-trail-bright: #f5d9a8;
+  --fab-glow: rgba(231, 201, 154, 0.3);
+}
+
+@keyframes floating-fab-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes floating-fab-glow {
+  0%,
+  100% {
+    transform: translate(-28%, -18%) scale(0.95);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(30%, 24%) scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+@media (min-width: 640px) {
+  .floating-contact-dock {
+    right: 20px;
+    bottom: 24px;
+    gap: 14px;
+  }
+
+  .floating-fab {
+    width: 56px;
+    height: 56px;
+  }
+
+  .floating-fab__icon {
+    font-size: 1.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-fab__ring::before,
+  .floating-fab__shimmer {
+    animation: none;
+  }
 }

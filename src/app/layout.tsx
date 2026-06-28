@@ -1,6 +1,7 @@
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import LocaleProvider from "@/components/providers/LocaleProvider";
+import FloatingContactDock from "@/components/layout/FloatingContactDock";
 import { siteMetadata, viewport } from "@/lib/metadata";
 import "./globals.css";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-background font-body text-foreground antialiased">
         <LocaleProvider>
           <SmoothScroll>{children}</SmoothScroll>
+          <FloatingContactDock />
         </LocaleProvider>
       </body>
     </html>
