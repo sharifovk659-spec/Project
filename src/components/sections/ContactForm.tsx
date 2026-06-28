@@ -17,10 +17,9 @@ const SERVICES = [
 ] as const;
 
 const BUDGET_OPTIONS = [
-  "contact.services.package300",
-  "contact.services.package500",
-  "contact.services.package700",
-  "contact.services.package1000",
+  "contact.services.packageRange1",
+  "contact.services.packageRange2",
+  "contact.services.packageRange3",
   "contact.services.other",
 ] as const;
 
