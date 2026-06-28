@@ -17,6 +17,7 @@ import { fadeUp } from "@/lib/animations";
 import { IMAGE_QUALITY_HIGH, IMAGE_SIZES } from "@/lib/image";
 import DigitalSolutionsBlock from "@/components/sections/DigitalSolutionsBlock";
 import TeamGalleryGrid from "@/components/sections/TeamGalleryGrid";
+import TeamFeaturedGrid from "@/components/sections/TeamFeaturedGrid";
 import { cn } from "@/lib/utils";
 
 const TEAM_GALLERY_SOURCES = [
@@ -304,6 +305,8 @@ export default function AboutSection() {
             ))}
           </Swiper>
         </motion.div>
+
+        <TeamFeaturedGrid />
 
         <TeamGalleryGrid />
 
