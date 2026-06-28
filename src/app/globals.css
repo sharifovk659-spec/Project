@@ -223,3 +223,28 @@ body {
 .team-photos-swiper .swiper-slide {
   height: auto;
 }
+
+.partners-swiper .swiper-pagination {
+  bottom: 0 !important;
+}
+
+.partners-swiper .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  opacity: 0.35;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.partners-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.partners-swiper.swiper-grab .swiper-slide {
+  cursor: grab;
+}
+
+.partners-swiper.swiper-grabbing .swiper-slide {
+  cursor: grabbing;
+}

@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -11,7 +14,7 @@ import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image";
 
 function PartnerLogo({ name, file }: { name: string; file: string }) {
   return (
-    <div className="flex shrink-0 items-center justify-center px-1 sm:px-1.5">
+    <div className="flex h-[117px] items-center justify-center sm:h-[129px] lg:h-[137px]">
       <Image
         src={`/images/partners/${file}`}
         alt={name}
@@ -20,7 +23,7 @@ function PartnerLogo({ name, file }: { name: string; file: string }) {
         loading="lazy"
         quality={IMAGE_QUALITY}
         sizes={IMAGE_SIZES.partner}
-        className="h-[117px] w-auto rounded-md object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 sm:h-[129px] lg:h-[137px]"
+        className="h-full w-auto max-w-full rounded-md object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
       />
     </div>
   );
@@ -28,7 +31,6 @@ function PartnerLogo({ name, file }: { name: string; file: string }) {
 
 export default function Partners() {
   const { t } = useLocale();
-  const marqueeItems = [...PARTNERS, ...PARTNERS];
 
   return (
     <Section className="border-b border-gold/10 py-10 sm:py-12">
@@ -44,11 +46,27 @@ export default function Partners() {
         </motion.p>
 
         <div className="partners-marquee overflow-hidden">
-          <div className="partners-marquee-track flex w-max items-center gap-6 sm:gap-8">
-            {marqueeItems.map((partner, i) => (
-              <PartnerLogo key={`${partner.file}-${i}`} name={partner.name} file={partner.file} />
+          <Swiper
+            modules={[Autoplay]}
+            slidesPerView={2}
+            spaceBetween={12}
+            loop
+            grabCursor
+            simulateTouch
+            allowTouchMove
+            autoplay={{ delay: 4500, disableOnInteraction: false, pauseOnMouseEnter: false }}
+            breakpoints={{
+              640: { slidesPerView: 3, spaceBetween: 14 },
+              1024: { slidesPerView: 5, spaceBetween: 16 },
+            }}
+            className="partners-swiper"
+          >
+            {PARTNERS.map((partner) => (
+              <SwiperSlide key={partner.file}>
+                <PartnerLogo name={partner.name} file={partner.file} />
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
       </Container>
     </Section>
