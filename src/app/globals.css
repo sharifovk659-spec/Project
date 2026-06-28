@@ -158,12 +158,29 @@ body {
 }
 
 .partners-marquee-track {
-  animation: marquee 42s linear infinite;
+  animation: marquee 38s linear infinite;
   will-change: transform;
 }
 
 .partners-marquee-track:hover {
   animation-play-state: paused;
+}
+
+.partners-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.partners-swiper .swiper-slide {
+  width: auto;
+  height: auto;
+}
+
+.partners-swiper.swiper-grab .swiper-slide {
+  cursor: grab;
+}
+
+.partners-swiper.swiper-grabbing .swiper-slide {
+  cursor: grabbing;
 }
 
 .showreel-video-swiper,
